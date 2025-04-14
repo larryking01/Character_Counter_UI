@@ -608,7 +608,8 @@ body {
     .text-area-section .count-options-div span {
         color: var(--white-col-200);
         font-family: 'DMSansRegular', sans-serif;
-        font-size: 1rem;
+        font-size: 0.85rem;
+        font-weight: normal;
     }
 
 
