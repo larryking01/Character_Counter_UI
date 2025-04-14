@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Frontend Mentor | Character counter</title>
+        <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png">
+        <link rel="stylesheet" href="styles.css">
+    </head>
+
+    <body>
+        <main class="container">
+            <!--navbar-->
+            <nav class="navbar">
+                <section>
+                    <img src="assets/images/logo-dark-theme.svg" alt="site logo" class="site-logo">
+                    
+                    <button>
+                        <img src="assets/images/icon-sun.svg" alt="sun icon" class="theme-icon">
+                    </button>
+                </section>
+            </nav>
+
+
+            <!--header section-->
+            <section class="header-section">
+                <div class="header-text-div">
+                    <h3 class="analyze-text">Analyze your text in real-time</h3>
+                </div>
+            </section>
+
+
+            <!--text area section-->
+            <section class="text-area-section">
+                <textarea class="text-area" rows="13"
+                          placeholder="Start typing here...(or paste your text)">
+                </textarea>
+
+                <div class="count-options-div">
+                    <article>
+                        <div>
+                            <input type="checkbox" class="checkbox">
+                            <span>Exclude Spaces</span>
+                        </div>
+    
+                        <div>
+                            <input type="checkbox" class="checkbox">
+                            <span>Set Character Limit</span>
+                        </div>
+                    </article>
+
+                    <h3 class="approx-reading-time-text">
+                        Approx. reading time < 1 minute
+                    </h3>
+                </div>
+            </section>
+
+
+            <!--Character display section-->
+            <section class="character-display-section">
+                <!--character display div-->
+                <div class="character-display-div">
+                    <div class="character-display-info-text-div">
+                        <h3 class="count-number-text">273</h3>
+                        <p class="count-type-text">Total Characters</p>
+                    </div>
+
+                    <div class="character-display-image-div">
+                        <img src="assets/images/pattern-character-count.svg" 
+                             alt="pattern character count" class="pattern-image">
+                    </div>
+                </div>
+
+                <!--word count display div-->
+                <div class="word-count-display-div">
+                    <div class="character-display-info-text-div">
+                        <h3 class="count-number-text">08</h3>
+                        <p class="count-type-text">Word Count</p>
+                    </div>
+
+                    <div class="character-display-image-div">
+                        <img src="assets/images/pattern-word-count.svg" 
+                             alt="pattern character count" class="pattern-image">
+                    </div>
+                </div>
+                
+                <!--sentence display div-->
+                <div class="sentence-display-div">
+                    <div class="character-display-info-text-div">
+                        <h3 class="count-number-text">22</h3>
+                        <p class="count-type-text">Sentence Count</p>
+                    </div>
+
+                    <div class="character-display-image-div">
+                        <img src="assets/images/pattern-sentence-count.svg" 
+                             alt="pattern character count" class="pattern-image">
+                    </div>
+                </div>
+            </section>
+
+
+
+            <!--letter density section-->
+            <section class="letter-density-section">
+                <h3 class="letter-density-text">Letter Density</h3>
+
+                <article class="letter-density-display-article">
+                    <div class="letter-density-display-div">
+                        <h3>E</h3>
+
+                        <div class="density-bar-parent-div">
+                            <div class="density-bar-child-div"></div>
+                        </div>
+
+                        <h3>40(16.06%)</h3>
+                    </div>
+
+
+                    <div class="letter-density-display-div">
+                        <h3>I</h3>
+
+                        <div class="density-bar-parent-div">
+                            <div class="density-bar-child-div"></div>
+                        </div>
+
+                        <h3>40(16.06%)</h3>
+                    </div>
+
+
+                    <div class="letter-density-display-div">
+                        <h3>T</h3>
+
+                        <div class="density-bar-parent-div">
+                            <div class="density-bar-child-div"></div>
+                        </div>
+
+                        <h3>40(16.06%)</h3>
+                    </div>
+
+
+                    <div class="letter-density-display-div">
+                        <h3>O</h3>
+
+                        <div class="density-bar-parent-div">
+                            <div class="density-bar-child-div"></div>
+                        </div>
+
+                        <h3>40(16.06%)</h3>
+                    </div>
+
+
+                    <div class="letter-density-display-div">
+                        <h3>N</h3>
+
+                        <div class="density-bar-parent-div">
+                            <div class="density-bar-child-div"></div>
+                        </div>
+
+                        <h3>40(16.06%)</h3>
+                    </div>
+
+
+
+
+
+
+                </article>
+            </section>
+
+
+
+
+        </main>
+
+        
+    </body>
+</html>
