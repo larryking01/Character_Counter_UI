@@ -46,7 +46,7 @@ body {
     background-image: url('assets/images/bg-dark-theme.png');
     background-repeat: no-repeat;
     background-size: cover;
-    /* overflow-x: hidden; */
+    overflow-x: hidden;
 }
 
 
