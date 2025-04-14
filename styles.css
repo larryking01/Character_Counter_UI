@@ -54,6 +54,7 @@ body {
 .container {
     max-width: 61.875rem;
     margin: 2rem auto 4rem auto;
+    overflow-x: hidden;
     /* background-color: tomato; */
 }
 
@@ -291,6 +292,7 @@ body {
     .container {
         max-width: 48rem;
         margin: 2rem auto 4rem auto;
+        overflow-x: hidden;
         /* background-color: tomato; */
     }
 
@@ -514,6 +516,8 @@ body {
     .container {
         max-width: 23.433rem;
         margin: 2rem auto 4rem auto;
+        overflow-x: hidden;
+
         /* background-color: red; */
     }
 
