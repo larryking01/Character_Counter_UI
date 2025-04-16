@@ -156,6 +156,37 @@ body {
 }
 
 
+.character-limit-input {
+    display: none;
+    /* visibility: hidden; */
+}
+
+
+.show-character-limit-input {
+    visibility: visible;
+    height: 1.5rem;
+    border-radius: 0.3rem;
+    padding: 0.6rem;
+    font-family: 'DMSansBold';
+}
+
+
+.error-text {
+    visibility: hidden;
+}
+
+
+.show-error-text {
+    color: red;
+    font-family: 'DMSansRegular', sans-serif;
+    margin-bottom: 0.5rem;
+}
+
+
+
+
+
+
 
 /* character display section */
 .character-display-section {
@@ -219,6 +250,26 @@ body {
 }
 
 
+.character-display-section .word-number-text {
+    font-family: 'DMSansBold', sans-serif;
+    font-size: 4rem;
+    color: var(--black-col);
+    /* font-weight: bold; */
+
+}
+
+
+.character-display-section .sentence-number-text {
+    font-family: 'DMSansBold', sans-serif;
+    font-size: 4rem;
+    color: var(--black-col);
+    /* font-weight: bold; */
+
+}
+
+
+
+
 .character-display-section .count-type-text {
     font-family: 'DMSansRegular', sans-serif;
     color: var(--black-col);
@@ -273,12 +324,17 @@ body {
 }
 
 
-.letter-density-section .letter-density-display-article h3 {
+.letter-density-section .letter-density-info-text {
     font-family: 'DMSansRegular', sans-serif;
     font-size: 1rem;
     color: var(--white-col-200);
     font-weight: normal;
 }
+
+
+.letter-bar.hidden {
+    display: none;
+  }
 
 
 
@@ -442,6 +498,24 @@ body {
 
     }
 
+
+    .character-display-section .word-number-text {
+        font-family: 'DMSansBold', sans-serif;
+        font-size: 4rem;
+        color: var(--black-col);
+        /* font-weight: bold; */
+    
+    }
+    
+    
+    .character-display-section .sentence-number-text {
+        font-family: 'DMSansBold', sans-serif;
+        font-size: 4rem;
+        color: var(--black-col);
+        /* font-weight: bold; */
+    
+    }
+    
 
     .character-display-section .count-type-text {
         font-family: 'DMSansRegular', sans-serif;
@@ -691,6 +765,24 @@ body {
 
     }
 
+
+    .character-display-section .word-number-text {
+        font-family: 'DMSansBold', sans-serif;
+        font-size: 4rem;
+        color: var(--black-col);
+        /* font-weight: bold; */
+    
+    }
+    
+    
+    .character-display-section .sentence-number-text {
+        font-family: 'DMSansBold', sans-serif;
+        font-size: 4rem;
+        color: var(--black-col);
+        /* font-weight: bold; */
+    
+    }
+    
 
     .character-display-section .count-type-text {
         font-family: 'DMSansRegular', sans-serif;

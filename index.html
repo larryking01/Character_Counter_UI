@@ -32,9 +32,8 @@
 
             <!--text area section-->
             <section class="text-area-section">
-                <textarea class="text-area" rows="13"
-                          placeholder="Start typing here...(or paste your text)">
-                </textarea>
+                <p class="error-text"></p>
+                <textarea class="text-area" rows="13"placeholder="Start typing here...(or paste your text)"></textarea>
 
                 <div class="count-options-div">
                     <article>
@@ -44,14 +43,18 @@
                         </div>
     
                         <div>
-                            <input type="checkbox" class="checkbox">
+                            <input type="checkbox" class="character-limit-checkbox">
                             <span>Set Character Limit</span>
+                        </div>
+
+                        <div>
+                            <input type="text" class="character-limit-input" placeholder="Enter Limit">
                         </div>
                     </article>
 
                     <h3 class="approx-reading-time-text">
                         Approx. reading time < 1 minute
-                    </h3>
+                    </h3> 
                 </div>
             </section>
 
@@ -61,7 +64,7 @@
                 <!--character display div-->
                 <div class="character-display-div">
                     <div class="character-display-info-text-div">
-                        <h3 class="count-number-text">273</h3>
+                        <h3 class="count-number-text">0</h3>
                         <p class="count-type-text">Total Characters</p>
                     </div>
 
@@ -74,7 +77,7 @@
                 <!--word count display div-->
                 <div class="word-count-display-div">
                     <div class="character-display-info-text-div">
-                        <h3 class="count-number-text">08</h3>
+                        <h3 class="word-number-text">0</h3>
                         <p class="count-type-text">Word Count</p>
                     </div>
 
@@ -87,7 +90,7 @@
                 <!--sentence display div-->
                 <div class="sentence-display-div">
                     <div class="character-display-info-text-div">
-                        <h3 class="count-number-text">22</h3>
+                        <h3 class="sentence-number-text">0</h3>
                         <p class="count-type-text">Sentence Count</p>
                     </div>
 
@@ -99,79 +102,17 @@
             </section>
 
 
+            <!-- letter density section -->
+             <section class="letter-density-section">
+                <div id="letter-density-container"></div>
 
-            <!--letter density section-->
-            <section class="letter-density-section">
-                <h3 class="letter-density-text">Letter Density</h3>
+                <button id="toggle-density-btn" style="display: none;">See more</button>
 
-                <article class="letter-density-display-article">
-                    <div class="letter-density-display-div">
-                        <h3>E</h3>
-
-                        <div class="density-bar-parent-div">
-                            <div class="density-bar-child-div"></div>
-                        </div>
-
-                        <h3>40(16.06%)</h3>
-                    </div>
-
-
-                    <div class="letter-density-display-div">
-                        <h3>I</h3>
-
-                        <div class="density-bar-parent-div">
-                            <div class="density-bar-child-div"></div>
-                        </div>
-
-                        <h3>40(16.06%)</h3>
-                    </div>
-
-
-                    <div class="letter-density-display-div">
-                        <h3>T</h3>
-
-                        <div class="density-bar-parent-div">
-                            <div class="density-bar-child-div"></div>
-                        </div>
-
-                        <h3>40(16.06%)</h3>
-                    </div>
-
-
-                    <div class="letter-density-display-div">
-                        <h3>O</h3>
-
-                        <div class="density-bar-parent-div">
-                            <div class="density-bar-child-div"></div>
-                        </div>
-
-                        <h3>40(16.06%)</h3>
-                    </div>
-
-
-                    <div class="letter-density-display-div">
-                        <h3>N</h3>
-
-                        <div class="density-bar-parent-div">
-                            <div class="density-bar-child-div"></div>
-                        </div>
-
-                        <h3>40(16.06%)</h3>
-                    </div>
-
-
-
-
-
-
-                </article>
-            </section>
-
-
-
+             </section>
 
         </main>
 
         
+    <script src="script.js"></script>
     </body>
 </html>
