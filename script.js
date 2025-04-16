@@ -11,6 +11,7 @@ let errorTextElement = document.querySelector('.error-text');
 let densityContainer = document.getElementById('letter-density-container');
 // let characterLimit;
 const toggleBtn = document.getElementById('toggle-density-btn');
+let showingAll = false;
 
 
 
@@ -30,9 +31,6 @@ function UpdateCounts() {
     // calculating 10% of the typed characters.
     let twentyPercent;
 
-    // let difference = 
-
-    let showingAll = false;
 
     if( textArea.value.length > characterLimit ) {
         textArea.value = textArea.value.substring(0, characterLimit); // limit the text area to the specified character limit
