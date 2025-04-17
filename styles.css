@@ -113,7 +113,7 @@ body {
     width: 100%;
     height: 12.5rem;
     padding: 1rem;
-    margin-bottom: 1rem;
+    margin-bottom: 0.2rem;
     background-color: var(--light-grey-col);
     border-radius: 0.75rem;
     resize: none;
@@ -185,6 +185,22 @@ body {
     color: red;
     font-family: 'DMSansRegular', sans-serif;
     margin-bottom: 0.5rem;
+    margin-bottom: 1.6rem;
+}
+
+
+.checkbox {
+    cursor: pointer;
+}
+
+
+.character-limit-checkbox {
+    cursor: pointer;
+}
+
+
+.exceeded-limit {
+    border-color: red;
 }
 
 
@@ -336,6 +352,10 @@ body {
     font-weight: normal;
 }
 
+
+/* .letter-bar {
+    width: 90%
+} */
 
 .letter-bar.hidden {
     display: none;
