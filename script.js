@@ -228,7 +228,7 @@ toggleBtn.addEventListener('click', () => {
       }
     });
   
-    toggleBtn.textContent = showingAll ? 'See less' : 'See more';
+    toggleBtn.innerHTML = showingAll ? 'See less' : 'See more';
   });
 
 
