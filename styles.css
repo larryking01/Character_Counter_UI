@@ -124,6 +124,11 @@ body {
 }
 
 
+.text-area:focus {
+    border-color: #c27cf8;
+}
+
+
 .text-area-section .count-options-div {
     display: flex;
     justify-content: space-between;

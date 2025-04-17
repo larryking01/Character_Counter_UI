@@ -9,8 +9,11 @@ let characterLimitCheckbox = document.querySelector('.character-limit-checkbox')
 let characterLimitInputBox = document.querySelector('.character-limit-input');
 let errorTextElement = document.querySelector('.error-text');
 let densityContainer = document.getElementById('letter-density-container');
-// let characterLimit;
 const toggleBtn = document.getElementById('toggle-density-btn');
+let approxReadingTime = document.querySelector('.approx-reading-time-text');
+
+
+
 let showingAll = false;
 
 
@@ -28,8 +31,27 @@ function UpdateCounts() {
     let characterCount;  // get length of text in text area
     let characterLimit = isNaN(characterLimitInputBox.value ) ? Infinity : parseInt(characterLimitInputBox.value, 10); // get the value of the character limit input box and convert it to a number. If the value is not a number, set it to Infinity.
 
-    // calculating 10% of the typed characters.
+    // calculating 20% of the typed characters.
     let twentyPercent;
+
+    // calculating the approximate reading time.
+    const approxText = typedText.trim();
+    const approxWordCount = approxText.split(/\s+/).filter(Boolean).length;
+    const wordsPerMinute = 200;
+    const timeInMinutes = Math.ceil( approxWordCount/wordsPerMinute );
+
+    if( approxWordCount === 0 ) {
+        approxReadingTime.textContent = "Approx. reading time: 0 min";
+    }
+    else {
+        approxReadingTime.textContent = `Approx. reading time: ${ timeInMinutes } min(s)`
+    }
+    console.log('approx text = ', approxText );
+    console.log('approx word count = ', approxWordCount );
+    console.log('time in minutes = ', timeInMinutes );
+    
+
+
 
 
     if( textArea.value.length > characterLimit ) {
