@@ -35,8 +35,8 @@ function UpdateCounts() {
     let twentyPercent;
 
     // calculating the approximate reading time.
-    const approxText = typedText.trim();
-    const approxWordCount = approxText.split(/\s+/).filter(Boolean).length;
+    const approxText = textArea.value.trim();
+    const approxWordCount = approxText.replace(/\s/g, '').length;
     const wordsPerMinute = 200;
     const timeInMinutes = Math.ceil( approxWordCount/wordsPerMinute );
 
@@ -46,8 +46,8 @@ function UpdateCounts() {
     else {
         approxReadingTime.textContent = `Approx. reading time: ${ timeInMinutes } min(s)`
     }
-    console.log('approx text = ', approxText );
-    console.log('approx word count = ', approxWordCount );
+    console.log('approx text = ', approxText.length );
+    console.log('approx word count no spaces = ', approxWordCount );
     console.log('time in minutes = ', timeInMinutes );
     
 
@@ -71,10 +71,10 @@ function UpdateCounts() {
         let textNoSpaces = typedText.replace(/\s/g, ''); // remove all whitespace characters
         twentyPercent = Math.ceil( characterLimit * 0.2 );
 
-        console.log('character limit = ', characterLimit );
-        console.log('textNoSpaces = ', textNoSpaces.length );
-        console.log('ten percent = ', twentyPercent);
-        console.log('difference = ', characterLimit - textNoSpaces.length);
+        // console.log('character limit = ', characterLimit );
+        // console.log('textNoSpaces = ', textNoSpaces.length );
+        // console.log('ten percent = ', twentyPercent);
+        // console.log('difference = ', characterLimit - textNoSpaces.length);
 
         if( characterLimit - textNoSpaces.length === twentyPercent ) {
             errorTextElement.textContent = "You are approaching the specified character limit";
@@ -97,10 +97,10 @@ function UpdateCounts() {
         twentyPercent = Math.ceil( characterLimit * 0.2 );
         let difference = characterLimit - textNoSpaces.length;
 
-        console.log('character limit = ', characterLimit );
-        console.log('textNoSpaces = ', textNoSpaces.length );
-        console.log('ten percent = ', twentyPercent);
-        console.log('difference = ', difference);
+        // console.log('character limit = ', characterLimit );
+        // console.log('textNoSpaces = ', textNoSpaces.length );
+        // console.log('ten percent = ', twentyPercent);
+        // console.log('difference = ', difference);
 
         if( difference === twentyPercent) {
             errorTextElement.textContent = "You are approaching the specified character limit";
@@ -158,7 +158,7 @@ function UpdateCounts() {
             letterCounts[character] = (letterCounts[character] || 0) + 1; // increment the count for each letter
         }
 
-        console.log( letterCounts );
+        // console.log( letterCounts );
     }
 
 
@@ -170,7 +170,7 @@ function UpdateCounts() {
     letters.forEach((letter, index) => {
         const count = letterCounts[letter];
         const percentage = ((count / totalCharacters) * 100).toFixed(2); // calculate the percentage of each letter
-        console.log( `${letter}: ${percentage}%` ); // log the letter density to the console
+        // console.log( `${letter}: ${percentage}%` ); // log the letter density to the console
 
         const letterBar = document.createElement('div'); // create a new div element for each letter density
         letterBar.className = "letter-bar";
