@@ -46,12 +46,16 @@ function UpdateCounts() {
     else {
         approxReadingTime.textContent = `Approx. reading time: ${ timeInMinutes } min(s)`
     }
-    console.log('approx text = ', approxText.length );
-    console.log('approx word count no spaces = ', approxWordCount );
-    console.log('time in minutes = ', timeInMinutes );
+
+    // console.log('approx text = ', approxText.length );
+    // console.log('approx word count no spaces = ', approxWordCount );
+    // console.log('time in minutes = ', timeInMinutes );
     
 
 
+    // if( textArea.value.length === characterLimit ) {
+    //     textArea.style.b
+    // }
 
 
     if( textArea.value.length > characterLimit ) {
@@ -246,8 +250,8 @@ function ToggleCharacterLimitInput() {
 
 // displaying warning message when user approaches limit.
 function CheckBoxInitialValue () {
-    console.log( textArea.value.length );
-    console.log( characterLimitInputBox.value );
+    // console.log( textArea.value.length );
+    // console.log( characterLimitInputBox.value );
     // if( textArea.value.length > characterLimit ) {
     //     textArea.value = textArea.value.substring(0, characterLimit); // limit the text area to the specified character limit
     // }
