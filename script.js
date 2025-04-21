@@ -7,8 +7,7 @@ let approxReadingTimeText = document.querySelector(".approx-reading-time-text");
 let excludeSpacesCheckbox = document.querySelector(".checkbox");
 let characterLimitInput = document.querySelector(".character-limit-input");
 let characterLimitCheckbox = document.querySelector(".character-limit-checkbox");
-
-
+let errorText = document.querySelector(".error-text");
 
 
 
@@ -104,6 +103,35 @@ function toggleCharacterLimitInputVisible() {
 
 
 
+function checkCharacterLimit() {
+    let characterLimit = parseInt(characterLimitInput.value);
+    let enteredText = textArea.value;
+    let enteredTextNoSpaces = textArea.value.trim()
+                              .replace(/\s/g, '');
+    let totalCharacters;
+    let twentyPercent;
+
+
+    totalCharacters = excludeSpacesCheckbox.checked ? enteredTextNoSpaces.length : enteredText.length
+    twentyPercent = 0.2 * characterLimit
+
+    if( ( characterLimit - totalCharacters ) < twentyPercent ) {
+        errorText.classList.toggle("error-text");
+        errorText.textContent = "You are approaching the maximum character limit"
+    }
+    // else if ( totalCharacters > characterLimit ) {
+    //     errorText.textContent = "You have exceeded the maximum character limit"
+    // }
+    // else if ( totalCharacters < eightyPercent ) {
+    //     errorText.classList.remove("show-error-text")
+    // }
+
+}
+
+
+
+
+
 
 
 
@@ -117,6 +145,7 @@ textArea.addEventListener('input', function () {
     countNumberOfWords();
     countNumberOfSentences();
     calculateApproxReadingTime();
+    checkCharacterLimit();
 })
 
 
@@ -129,4 +158,10 @@ excludeSpacesCheckbox.addEventListener('change', function () {
 // adding event listeners to the character limit checkbox 
 characterLimitCheckbox.addEventListener('change', function () {
     toggleCharacterLimitInputVisible()
+})
+
+
+// adding event listeners to the character limit input
+characterLimitInput.addEventListener('input', function () {
+    console.log( characterLimitInput.value )
 })

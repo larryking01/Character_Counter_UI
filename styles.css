@@ -25,7 +25,8 @@
     --black-col:    #12131A;
     --light-grey-col: #21222C;
     --white-col: #F2F2F7;
-    --white-col-200: #E4E4EF
+    --white-col-200: #E4E4EF;
+    --text-area-focus: #c27cf8;
 }
 
 
@@ -125,7 +126,7 @@ body {
 
 
 .text-area:focus {
-    border-color: #c27cf8;
+    border-color: var(--text-area-focus);
 }
 
 
@@ -168,11 +169,11 @@ body {
 
 
 .show-character-limit-input {
-    width: 4rem;
-    height: 1.5rem;
+    width: 3.5rem;
+    height: 1.7rem;
     background-color: var(--black-col);
     color: var(--white-col-200);
-    border: 1px solid var(--white-col-200);
+    border: 1px solid var(--purple-col);
     border-radius: 0.3rem;
     padding: 0.6rem;
     font-family: 'DMSansRegular';
@@ -180,7 +181,7 @@ body {
 
 
 .error-text {
-    visibility: hidden;
+    display: none;
 }
 
 
