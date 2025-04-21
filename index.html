@@ -48,7 +48,7 @@
                         </div>
 
                         <div>
-                            <input type="text"  class="character-limit-input show-character-limit-input" placeholder="">
+                            <input type="number" min="1" step="1"  class="character-limit-input show-character-limit-input" placeholder="">
                         </div>
                     </article>
 
@@ -104,8 +104,10 @@
 
             <!-- letter density section -->
              <section class="letter-density-section">
+                <h3 class="letter-density-text">Letter Density</h3>
+                <p class="no-characters-found-text">No characters found. Start typing to see letter density.</p>
+                
                 <div id="letter-density-container"></div>
-
                 <button id="toggle-density-btn" style="display: none;">See more</button>
 
              </section>

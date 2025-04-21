@@ -8,6 +8,8 @@ let excludeSpacesCheckbox = document.querySelector(".checkbox");
 let characterLimitInput = document.querySelector(".character-limit-input");
 let characterLimitCheckbox = document.querySelector(".character-limit-checkbox");
 let errorText = document.querySelector(".error-text");
+let letterDensityDiv = document.getElementById("letter-density-container")
+let noDensityAvailableYetText = document.querySelector(".no-characters-found-text")
 
 
 
@@ -134,16 +136,118 @@ function checkCharacterLimit() {
         errorText.textContent = `You have hit the maximum limit of ${ characterLimit } characters`;
     }
     else {
-        textArea.classList.add("limit-exceeded");
-        errorText.textContent = `Limit reached! Your text exceeds ${ characterLimit } characters.`;
+        if(!isNaN( characterLimit )) {
+            textArea.classList.add("limit-exceeded");
+            errorText.textContent = `Limit reached! Your text exceeds ${ characterLimit } characters.`;
+        }
+        else {
+            // do nothing
+        }
     }
 
 }
 
 
 
+// function to calculate the letter densities
+function calculateLetterDensity ( ) {
+    let text = textArea.value.toUpperCase().replace(/[^A-Z]/g, ''); // keep only A-Z letters
+    let totalLetters = text.length;
+
+    const frequencyMap = {} // the frequency map object.
+
+    // count occurrences of each letter
+    for ( const letter of text ) {
+        frequencyMap[letter] = ( frequencyMap[letter] || 0 ) + 1;
+    }
+
+    // console.log(`frequency map = ${ frequencyMap }`)
+
+    letterDensityDiv.innerHTML = ""; // clearing existing bars.
+
+    const letters = Object.keys( frequencyMap ).sort();
+    const showLimit = 5;
+
+    letters.forEach(( letter, index ) => {
+        const count = frequencyMap[letter];
+        const percentage = ((count / totalLetters ) * 100 ).toFixed( 1 );
+
+        let bar = document.createElement('div')
+        bar.className = "letter-density-display-div"
+
+        let label = document.createElement("span")
+        label.className = "letter-density-info-text"
+        label.textContent = letter
+
+        let barContainer = document.createElement("div")
+        barContainer.className = "density-bar-parent-div"
+
+        const progress = document.createElement("div")
+        progress.className = "density-bar-child-div"
+        progress.style.width = `${ percentage }%`
+        progress.title = `${ percentage }%`
+
+        const percentLabel = document.createElement("span")
+        percentLabel.className = "letter-density-info-text"
+        percentLabel.textContent = `${ count } (${ percentage }%)`
+
+        barContainer.appendChild( progress )
+        bar.appendChild( label )
+        bar.appendChild( barContainer )
+        bar.appendChild( percentLabel )
+
+        // hide bars beyond the first 5 initially
+        if( index >= showLimit ) {
+            bar.style.display = "none";
+            bar.classList.add("extra-bar");
+        }
+
+        letterDensityDiv.appendChild( bar )
+
+    });
+
+    // add show more or show less toggle if needed
+    if( letters.length > showLimit ) {
+        const toggleDiv = document.createElement("div")
+        toggleDiv.className = "see-more-density-div"
+        toggleDiv.textContent = "See More ▼"
+
+        let expanded = false
+
+        toggleDiv.addEventListener("click", function () {
+            expanded = !expanded
+
+            const extraBars = document.querySelectorAll('.extra-bar');
+            extraBars.forEach(bar => {
+              bar.style.display = expanded ? 'flex' : 'none';
+            });
+
+            toggleDiv.textContent = expanded ? 'See Less ▲' : 'See More ▼';
+                  
+        })
 
 
+        letterDensityDiv.appendChild(toggleDiv)
+    }
+
+
+
+}
+
+
+
+
+// toggle no density text
+function toggleNoDensityAvailableYet () {
+    let text = textArea.value;
+
+    if( text.length > 0 ) {
+        noDensityAvailableYetText.classList.add("hide-no-characters-found-text")
+    }
+    else {
+        noDensityAvailableYetText.classList.remove("hide-no-characters-found-text")
+    }
+}
 
 
 
@@ -158,6 +262,8 @@ textArea.addEventListener('input', function () {
     countNumberOfSentences();
     calculateApproxReadingTime();
     checkCharacterLimit();
+    calculateLetterDensity();
+    toggleNoDensityAvailableYet();
 })
 
 

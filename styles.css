@@ -135,6 +135,15 @@ body {
 }
 
 
+.text-area-section .checkbox {
+    cursor: pointer;
+}
+
+.text-area-section .character-limit-checkbox {
+    cursor: pointer;
+}
+
+
 .text-area-section .count-options-div {
     display: flex;
     justify-content: space-between;
@@ -294,7 +303,7 @@ body {
 
 .character-display-section .pattern-image {
     position: absolute;
-    right: 0px;
+    right: -50px;
     bottom: 0;
 }
 
@@ -315,6 +324,19 @@ body {
 }
 
 
+.letter-density-section .no-characters-found-text {
+    font-family: 'DMSansRegular', sans-serif;
+    font-size: 1rem;
+    font-weight: normal;
+    color: var(--white-col-200);
+}
+
+
+.hide-no-characters-found-text {
+    display: none;
+}
+
+
 .letter-density-section .letter-density-display-div {
     display: flex;
     justify-content: space-between;
@@ -331,7 +353,6 @@ body {
 
 
 .letter-density-section .density-bar-child-div {
-    width: 16%;
     height: 0.8rem;
     background-color: var(--purple-col);
     border-radius: 62.438rem;
@@ -349,6 +370,14 @@ body {
 .letter-bar.hidden {
     display: none;
   }
+
+
+.see-more-density-div {
+    font-family: 'DMSansRegular', sans-serif;
+    color: var(--white-col);
+    font-size: 1rem;
+    cursor: pointer;
+}
 
 
 #toggle-density-btn {
