@@ -130,6 +130,11 @@ body {
 }
 
 
+.text-area:focus.limit-exceeded {
+    border: 2px solid red !important;
+}
+
+
 .text-area-section .count-options-div {
     display: flex;
     justify-content: space-between;

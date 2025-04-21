@@ -102,29 +102,41 @@ function toggleCharacterLimitInputVisible() {
 
 
 
-
 function checkCharacterLimit() {
     let characterLimit = parseInt(characterLimitInput.value);
     let enteredText = textArea.value;
     let enteredTextNoSpaces = textArea.value.trim()
                               .replace(/\s/g, '');
     let totalCharacters;
-    let twentyPercent;
+    let eightyPercent;
 
 
     totalCharacters = excludeSpacesCheckbox.checked ? enteredTextNoSpaces.length : enteredText.length
-    twentyPercent = 0.2 * characterLimit
+    eightyPercent = Math.floor( 0.8 * characterLimit );
 
-    if( ( characterLimit - totalCharacters ) < twentyPercent ) {
-        errorText.classList.toggle("error-text");
-        errorText.textContent = "You are approaching the maximum character limit"
+    // console.log(`total characters = ${ totalCharacters }`);
+    // console.log(`character limit = ${ characterLimit }`);
+    // console.log(`eighty percent = ${ eightyPercent }`);
+
+    if( totalCharacters < eightyPercent || totalCharacters === eightyPercent ) {
+        textArea.classList.remove("limit-exceeded");
+        errorText.classList.remove("show-error-text");
+        errorText.classList.add("error-text");
     }
-    // else if ( totalCharacters > characterLimit ) {
-    //     errorText.textContent = "You have exceeded the maximum character limit"
-    // }
-    // else if ( totalCharacters < eightyPercent ) {
-    //     errorText.classList.remove("show-error-text")
-    // }
+    else if( totalCharacters > eightyPercent && totalCharacters < characterLimit ) {
+        textArea.classList.remove("limit-exceeded");
+        errorText.classList.remove("error-text");
+        errorText.classList.add("show-error-text");
+        errorText.textContent = "You are approaching the maximum character limit";
+    }
+    else if( totalCharacters === characterLimit ) {
+        textArea.classList.remove("limit-exceeded");
+        errorText.textContent = `You have hit the maximum limit of ${ characterLimit } characters`;
+    }
+    else {
+        textArea.classList.add("limit-exceeded");
+        errorText.textContent = `Limit reached! Your text exceeds ${ characterLimit } characters.`;
+    }
 
 }
 
