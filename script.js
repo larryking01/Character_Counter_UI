@@ -276,6 +276,6 @@ characterLimitCheckbox.addEventListener('change', function () {
 
 
 // adding event listeners to the character limit input
-characterLimitInput.addEventListener('input', function () {
-    console.log( characterLimitInput.value )
-})
+// characterLimitInput.addEventListener('input', function () {
+//     console.log( characterLimitInput.value )
+// })
