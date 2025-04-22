@@ -25,7 +25,8 @@
     --black-col:    #12131A;
     --light-grey-col: #21222C;
     --white-col: #F2F2F7;
-    --white-col-200: #E4E4EF
+    --white-col-200: #E4E4EF;
+    --text-area-focus: #c27cf8;
 }
 
 
@@ -125,7 +126,21 @@ body {
 
 
 .text-area:focus {
-    border-color: #c27cf8;
+    border-color: var(--text-area-focus);
+}
+
+
+.text-area:focus.limit-exceeded {
+    border: 2px solid red !important;
+}
+
+
+.text-area-section .checkbox {
+    cursor: pointer;
+}
+
+.text-area-section .character-limit-checkbox {
+    cursor: pointer;
 }
 
 
@@ -168,16 +183,19 @@ body {
 
 
 .show-character-limit-input {
-    visibility: visible;
-    height: 1.5rem;
+    width: 3.5rem;
+    height: 1.7rem;
+    background-color: var(--black-col);
+    color: var(--white-col-200);
+    border: 1px solid var(--purple-col);
     border-radius: 0.3rem;
     padding: 0.6rem;
-    font-family: 'DMSansBold';
+    font-family: 'DMSansRegular';
 }
 
 
 .error-text {
-    visibility: hidden;
+    display: none;
 }
 
 
@@ -301,7 +319,7 @@ body {
 
 .character-display-section .pattern-image {
     position: absolute;
-    right: 0px;
+    right: -50px;
     bottom: 0;
 }
 
@@ -322,6 +340,19 @@ body {
 }
 
 
+.letter-density-section .no-characters-found-text {
+    font-family: 'DMSansRegular', sans-serif;
+    font-size: 1rem;
+    font-weight: normal;
+    color: var(--white-col-200);
+}
+
+
+.hide-no-characters-found-text {
+    display: none;
+}
+
+
 .letter-density-section .letter-density-display-div {
     display: flex;
     justify-content: space-between;
@@ -338,7 +369,6 @@ body {
 
 
 .letter-density-section .density-bar-child-div {
-    width: 16%;
     height: 0.8rem;
     background-color: var(--purple-col);
     border-radius: 62.438rem;
@@ -360,6 +390,14 @@ body {
 .letter-bar.hidden {
     display: none;
   }
+
+
+.see-more-density-div {
+    font-family: 'DMSansRegular', sans-serif;
+    color: var(--white-col);
+    font-size: 1rem;
+    cursor: pointer;
+}
 
 
 #toggle-density-btn {

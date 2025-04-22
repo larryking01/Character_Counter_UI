@@ -1,273 +1,281 @@
-// writing the function to update the character count in real-time.
-// grabbing all the target elements from the DOM.
-let textArea = document.querySelector('.text-area');
-let characterCountDisplay = document.querySelector('.count-number-text');
-let wordCountDisplay = document.querySelector('.word-number-text');
-let sentenceCountDisplay = document.querySelector('.sentence-number-text');
-let spacingCheckbox = document.querySelector('.checkbox');
-let characterLimitCheckbox = document.querySelector('.character-limit-checkbox');
-let characterLimitInputBox = document.querySelector('.character-limit-input');
-let errorTextElement = document.querySelector('.error-text');
-let densityContainer = document.getElementById('letter-density-container');
-const toggleBtn = document.getElementById('toggle-density-btn');
-let approxReadingTime = document.querySelector('.approx-reading-time-text');
-
-
-
-let showingAll = false;
+// selecting the html elements of interest.
+let textArea = document.querySelector(".text-area");
+let characterCountText = document.querySelector(".count-number-text");
+let wordCountText = document.querySelector(".word-number-text");
+let sentenceCountText = document.querySelector(".sentence-number-text");
+let approxReadingTimeText = document.querySelector(".approx-reading-time-text");
+let excludeSpacesCheckbox = document.querySelector(".checkbox");
+let characterLimitInput = document.querySelector(".character-limit-input");
+let characterLimitCheckbox = document.querySelector(".character-limit-checkbox");
+let errorText = document.querySelector(".error-text");
+let letterDensityDiv = document.getElementById("letter-density-container")
+let noDensityAvailableYetText = document.querySelector(".no-characters-found-text")
 
 
 
 
 
+// function to count the number of characters in the text area.
+function countCharacters() {
+    let totalCharacters;
+    let enteredText = textArea.value;
+    let enteredTextNoSpaces = textArea.value.trim()
+                              .replace(/\s/g, '');
 
+    totalCharacters = excludeSpacesCheckbox.checked ? enteredTextNoSpaces.length : enteredText.length
 
-
-function UpdateCounts() {
-
-    // console.log( characterLimitInputBox.value );
-
-    const typedText = textArea.value;  // get the value of all text in the text area
-    let characterCount;  // get length of text in text area
-    let characterLimit = isNaN(characterLimitInputBox.value ) ? Infinity : parseInt(characterLimitInputBox.value, 10); // get the value of the character limit input box and convert it to a number. If the value is not a number, set it to Infinity.
-
-    // calculating 20% of the typed characters.
-    let twentyPercent;
-
-    // calculating the approximate reading time.
-    const approxText = textArea.value.trim();
-    const approxWordCount = approxText.replace(/\s/g, '').length;
-    const wordsPerMinute = 200;
-    const timeInMinutes = Math.ceil( approxWordCount/wordsPerMinute );
-
-    if( approxWordCount === 0 ) {
-        approxReadingTime.textContent = "Approx. reading time: 0 min";
+    let totalCharacterStringText = totalCharacters.toString()
+    if( totalCharacterStringText.length < 2 ) {
+        totalCharacterStringText = '0' + totalCharacterStringText
     }
     else {
-        approxReadingTime.textContent = `Approx. reading time: ${ timeInMinutes } min(s)`
+        totalCharacterStringText = totalCharacterStringText
     }
 
-    // console.log('approx text = ', approxText.length );
-    // console.log('approx word count no spaces = ', approxWordCount );
-    // console.log('time in minutes = ', timeInMinutes );
+    characterCountText.textContent = totalCharacterStringText
+}
+
+
+
+// function to calculate the number of words.
+function countNumberOfWords() {
+    let enteredText = textArea.value.trim();
+    let enteredWords = enteredText.split(/\s+/).filter( word => word.length > 0 );
+
+    let numberOfWords = enteredWords.length;
+    let numberOfWordsStringText = numberOfWords.toString();
+
+    if( numberOfWordsStringText.length < 2) {
+        numberOfWordsStringText = '0' + numberOfWordsStringText
+    }
+    else {
+        numberOfWordsStringText = numberOfWordsStringText
+    }
+
+    wordCountText.textContent = numberOfWordsStringText
+
+}
+
+
+
+
+// function to calculate the number of sentences.
+function countNumberOfSentences() {
+    let enteredText = textArea.value.trim()
+
+    let sentences = enteredText.split(/(?<=[.!?])/)
+                    .map( sentence => sentence.trim())
+                    .filter( sentence => sentence.length > 0 );
     
+    let numberOfSentences = sentences.length;
+    let numberOfSentencesStringText = numberOfSentences.toString()
 
-
-    // if( textArea.value.length === characterLimit ) {
-    //     textArea.style.b
-    // }
-
-
-    if( textArea.value.length > characterLimit ) {
-        textArea.value = textArea.value.substring(0, characterLimit); // limit the text area to the specified character limit
+    if( numberOfSentencesStringText.length < 2 ) {
+        numberOfSentencesStringText = "0" + numberOfSentencesStringText
+    }
+    else {
+        numberOfSentencesStringText = numberOfSentencesStringText
     }
 
+    sentenceCountText.textContent = numberOfSentencesStringText
 
-    if( typedText.length < characterLimit) {
-        // errorTextElement.textContent = "You are approaching the specified character limit";
-        errorTextElement.classList.remove("show-error-text");
-        errorTextElement.classList.add("error-text")
+}
 
+
+
+// function to calculate the approx. reading time.
+function calculateApproxReadingTime() {
+    let avgWordsPerMin = 200;
+    let enteredText = textArea.value.trim();
+    let enteredWords = enteredText.split(/\s+/).filter( word => word.length > 0 );
+    let numberOfWords = enteredWords.length;
+    
+    let approxReadingTime = Math.ceil( numberOfWords / avgWordsPerMin );
+    approxReadingTimeText.textContent = `Approx. reading time: ${ approxReadingTime } min(s)`
+
+}
+
+
+
+// function to toggle character limit input visible or hidden.
+function toggleCharacterLimitInputVisible() {
+    characterLimitInput.classList.toggle("character-limit-input");
+}
+
+
+
+function checkCharacterLimit() {
+    let characterLimit = parseInt(characterLimitInput.value);
+    let enteredText = textArea.value;
+    let enteredTextNoSpaces = textArea.value.trim()
+                              .replace(/\s/g, '');
+    let totalCharacters;
+    let eightyPercent;
+
+
+    totalCharacters = excludeSpacesCheckbox.checked ? enteredTextNoSpaces.length : enteredText.length
+    eightyPercent = Math.floor( 0.8 * characterLimit );
+
+    // console.log(`total characters = ${ totalCharacters }`);
+    // console.log(`character limit = ${ characterLimit }`);
+    // console.log(`eighty percent = ${ eightyPercent }`);
+
+    if( totalCharacters < eightyPercent || totalCharacters === eightyPercent ) {
+        textArea.classList.remove("limit-exceeded");
+        errorText.classList.remove("show-error-text");
+        errorText.classList.add("error-text");
     }
-
-
-    if( spacingCheckbox.checked ) {
-        let textNoSpaces = typedText.replace(/\s/g, ''); // remove all whitespace characters
-        twentyPercent = Math.ceil( characterLimit * 0.2 );
-
-        // console.log('character limit = ', characterLimit );
-        // console.log('textNoSpaces = ', textNoSpaces.length );
-        // console.log('ten percent = ', twentyPercent);
-        // console.log('difference = ', characterLimit - textNoSpaces.length);
-
-        if( characterLimit - textNoSpaces.length === twentyPercent ) {
-            errorTextElement.textContent = "You are approaching the specified character limit";
-            errorTextElement.classList.remove("error-text")
-            errorTextElement.classList.add("show-error-text")
-        }
-        else if( characterLimit - textNoSpaces.length === 0 ) {
-            alert('Maximum character limit reached');
-            errorTextElement.textContent = "You have reached maximum character limit";
-            errorTextElement.classList.remove("error-text")
-            errorTextElement.classList.add("show-error-text")
+    else if( totalCharacters > eightyPercent && totalCharacters < characterLimit ) {
+        textArea.classList.remove("limit-exceeded");
+        errorText.classList.remove("error-text");
+        errorText.classList.add("show-error-text");
+        errorText.textContent = "You are approaching the maximum character limit";
+    }
+    else if( totalCharacters === characterLimit ) {
+        textArea.classList.remove("limit-exceeded");
+        errorText.textContent = `You have hit the maximum limit of ${ characterLimit } characters`;
+    }
+    else {
+        if(!isNaN( characterLimit )) {
+            textArea.classList.add("limit-exceeded");
+            errorText.textContent = `Limit reached! Your text exceeds ${ characterLimit } characters.`;
         }
         else {
             // do nothing
         }
     }
-    else {
 
-        let textNoSpaces = typedText;
-        twentyPercent = Math.ceil( characterLimit * 0.2 );
-        let difference = characterLimit - textNoSpaces.length;
+}
 
-        // console.log('character limit = ', characterLimit );
-        // console.log('textNoSpaces = ', textNoSpaces.length );
-        // console.log('ten percent = ', twentyPercent);
-        // console.log('difference = ', difference);
 
-        if( difference === twentyPercent) {
-            errorTextElement.textContent = "You are approaching the specified character limit";
-            errorTextElement.classList.remove("error-text")
-            errorTextElement.classList.add("show-error-text")
-        }
-        else if( difference === 0 ) {
-            alert('Maximum character limit reached');
-            errorTextElement.textContent = "You have reached maximum character limit";
-            errorTextElement.classList.remove("error-text")
-            errorTextElement.classList.add("show-error-text")
-        }
-        else {
-            // do nothing
-        }
-        
+
+// function to calculate the letter densities
+function calculateLetterDensity ( ) {
+    let text = textArea.value.toUpperCase().replace(/[^A-Z]/g, ''); // keep only A-Z letters
+    let totalLetters = text.length;
+
+    const frequencyMap = {} // the frequency map object.
+
+    // count occurrences of each letter
+    for ( const letter of text ) {
+        frequencyMap[letter] = ( frequencyMap[letter] || 0 ) + 1;
     }
 
-    // character count logic
-    if( spacingCheckbox.checked ) {
-        // remove all whitespace before counting
-        const textWithoutSpaces = typedText.replace(/\s/g, ''); // remove all whitespace characters
-        characterCount = textWithoutSpaces.length;
-    }
-    else {
-        // count all characters including spaces
-        characterCount = typedText.length; // count all characters including spaces
-    }
+    // console.log(`frequency map = ${ frequencyMap }`)
 
-    // word count logic
-    const trimmedText = typedText.trim(); // remove leading and trailing spaces
-    const wordArray = trimmedText === "" ? [] : trimmedText.split(/\s+/); // split by whitespace
-    const wordCount = wordArray.length; // count the words
+    letterDensityDiv.innerHTML = ""; // clearing existing bars.
 
+    const letters = Object.keys( frequencyMap ).sort();
+    const showLimit = 5;
 
-    // sentence count logic
-    const sentenceArray = typedText
-        .split(/[.!?]+/) // split by sentence-ending punctuation
-        .map(sentence => sentence.trim()) // trim whitespace from each sentence
-        .filter( sentence => sentence.length > 0 ); // filter out empty sentences
+    letters.forEach(( letter, index ) => {
+        const count = frequencyMap[letter];
+        const percentage = ((count / totalLetters ) * 100 ).toFixed( 1 );
 
-    const sentenceCount = sentenceArray.length; // count the sentences
+        let bar = document.createElement('div')
+        bar.className = "letter-density-display-div"
 
+        let label = document.createElement("span")
+        label.className = "letter-density-info-text"
+        label.textContent = letter
 
+        let barContainer = document.createElement("div")
+        barContainer.className = "density-bar-parent-div"
 
-    // getting the letter densities.
-    const density = textArea.value;
-    const totalCharacters = density.length;
+        const progress = document.createElement("div")
+        progress.className = "density-bar-child-div"
+        progress.style.width = `${ percentage }%`
+        progress.title = `${ percentage }%`
 
-    // count the number of letters in the text area
-    const letterCounts = {};
+        const percentLabel = document.createElement("span")
+        percentLabel.className = "letter-density-info-text"
+        percentLabel.textContent = `${ count } (${ percentage }%)`
 
-    for ( let character of density.toUpperCase()) {
-        if( character.match(/[A-Z]/) ) {
-            letterCounts[character] = (letterCounts[character] || 0) + 1; // increment the count for each letter
+        barContainer.appendChild( progress )
+        bar.appendChild( label )
+        bar.appendChild( barContainer )
+        bar.appendChild( percentLabel )
+
+        // hide bars beyond the first 5 initially
+        if( index >= showLimit ) {
+            bar.style.display = "none";
+            bar.classList.add("extra-bar");
         }
 
-        // console.log( letterCounts );
-    }
-
-
-    const letters = Object.keys(letterCounts);
-
-    densityContainer.innerHTML = ""; // clear the previous letter density data
-
-    // calculate the letter density for each letter
-    letters.forEach((letter, index) => {
-        const count = letterCounts[letter];
-        const percentage = ((count / totalCharacters) * 100).toFixed(2); // calculate the percentage of each letter
-        // console.log( `${letter}: ${percentage}%` ); // log the letter density to the console
-
-        const letterBar = document.createElement('div'); // create a new div element for each letter density
-        letterBar.className = "letter-bar";
-
-        if (!showingAll && index >= 5) {
-            letterBar.classList.add('hidden');
-          }
-
-        letterBar.innerHTML = `
-            <div class="letter-density-display-div">
-                <h3 class="letter-density-info-text">${ letter }</h3>
-
-                <div class="density-bar-parent-div">
-                    <div class="density-bar-child-div"></div>
-                </div>
-
-                <h3 class="letter-density-info-text">${ count } (${ percentage }%)</h3>
-            </div>
-        `; // set the inner HTML of the letter bar div
-
-        densityContainer.appendChild(letterBar); // append the letter bar div to the letter density container
-    
-
-
-    // Show or hide toggle button
-    toggleBtn.style.display = letters.length > 5 ? 'inline-block' : 'none';
-    toggleBtn.textContent = showingAll ? 'See less' : 'See more';
+        letterDensityDiv.appendChild( bar )
 
     });
 
+    // add show more or show less toggle if needed
+    if( letters.length > showLimit ) {
+        const toggleDiv = document.createElement("div")
+        toggleDiv.className = "see-more-density-div"
+        toggleDiv.textContent = "See More ▼"
+
+        let expanded = false
+
+        toggleDiv.addEventListener("click", function () {
+            expanded = !expanded
+
+            const extraBars = document.querySelectorAll('.extra-bar');
+            extraBars.forEach(bar => {
+              bar.style.display = expanded ? 'flex' : 'none';
+            });
+
+            toggleDiv.textContent = expanded ? 'See Less ▲' : 'See More ▼';
+                  
+        })
+
+
+        letterDensityDiv.appendChild(toggleDiv)
+    }
 
 
 
-    // updating the DOM by the individual target elements.
-    characterCountDisplay.textContent = characterCount;
-    wordCountDisplay.textContent = wordCount;
-    sentenceCountDisplay.textContent = sentenceCount
-    
 }
 
 
 
 
-toggleBtn.addEventListener('click', () => {
-    showingAll = !showingAll;
-    const bars = document.querySelectorAll('.letter-bar');
-  
-    bars.forEach((bar, index) => {
-      if (index >= 5) {
-        bar.classList.toggle('hidden', !showingAll);
-      }
-    });
-  
-    toggleBtn.innerHTML = showingAll ? 'See less' : 'See more';
-  });
+// toggle no density text
+function toggleNoDensityAvailableYet () {
+    let text = textArea.value;
 
-
-
-
-// toggle character limit input visibility on/off
-function ToggleCharacterLimitInput() {
-    if( characterLimitCheckbox.checked ) {
-        characterLimitInputBox.classList.remove('character-limit-input');
-        characterLimitInputBox.classList.add('show-character-limit-input');
+    if( text.length > 0 ) {
+        noDensityAvailableYetText.classList.add("hide-no-characters-found-text")
     }
     else {
-        characterLimitInputBox.classList.remove('show-character-limit-input');
-        characterLimitInputBox.classList.add('character-limit-input');
+        noDensityAvailableYetText.classList.remove("hide-no-characters-found-text")
     }
 }
 
 
 
-// displaying warning message when user approaches limit.
-function CheckBoxInitialValue () {
-    // console.log( textArea.value.length );
-    // console.log( characterLimitInputBox.value );
-    // if( textArea.value.length > characterLimit ) {
-    //     textArea.value = textArea.value.substring(0, characterLimit); // limit the text area to the specified character limit
-    // }
+// adding the event handler to the text area.
+textArea.addEventListener('input', function () {
+    countCharacters();
+    countNumberOfWords();
+    countNumberOfSentences();
+    calculateApproxReadingTime();
+    checkCharacterLimit();
+    calculateLetterDensity();
+    toggleNoDensityAvailableYet();
+})
 
-}
+
+// adding event listeners to the checkbox
+excludeSpacesCheckbox.addEventListener('change', function () {
+    countCharacters();
+})
 
 
+// adding event listeners to the character limit checkbox 
+characterLimitCheckbox.addEventListener('change', function () {
+    toggleCharacterLimitInputVisible()
+})
 
-// adding an event listener to the text-area to listen for input events
-textArea.addEventListener('input', UpdateCounts );
 
-// adding an event listener to the checkbox to listen for change events
-spacingCheckbox.addEventListener('change', UpdateCounts );
-
-// toggling the character limit input element
-characterLimitCheckbox.addEventListener('change', ToggleCharacterLimitInput )
-
-// adding 
-characterLimitInputBox.addEventListener('input', CheckBoxInitialValue)
+// adding event listeners to the character limit input
+characterLimitInput.addEventListener('input', function () {
+    console.log( characterLimitInput.value )
+})
