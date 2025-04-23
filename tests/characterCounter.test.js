@@ -88,6 +88,22 @@ describe("Check character count logic for when spacing is allowed or not", funct
     });
 
 
+    // test 5
+    test('ignores leading and trailing spaces', () => {
+        textArea.value = '   Hello world this is test   ';
+        countNumberOfWords( textArea, wordCountText );
+        expect(wordCountText.textContent).toBe('05');
+    });
+
+
+    // test 6
+    test('returns 00 when input is empty or just spaces', () => {
+        textArea.value = '     ';
+        countNumberOfWords( textArea, wordCountText );
+        expect(wordCountText.textContent).toBe('00');
+    });
+
+
 
     
 
