@@ -64,32 +64,28 @@ describe("Check character count logic for when spacing is allowed or not", funct
     });
 
 
-        // test 3:
-        test('counts single words correctly', () => {
-            textArea.value = "Google";
-            countNumberOfWords( textArea, wordCountText );
-            expect( wordCountText.textContent ).toBe("01");
-        })
+    // test 3:
+    test('counts single words correctly', () => {
+        textArea.value = "Google";
+        countNumberOfWords( textArea, wordCountText );
+        expect( wordCountText.textContent ).toBe("01");
+    })
+
     
-    
-        // test 4:
-        test('counts multiple words correctly', () => {
-            textArea.value = 'Hello world this is test';
-            countNumberOfWords( textArea, wordCountText );
-            expect(wordCountText.textContent).toBe('05');
-        });
-    
-    
+    // test 4:
+    test('counts multiple words correctly', () => {
+        textArea.value = 'Hello world this is test';
+        countNumberOfWords( textArea, wordCountText );
+        expect(wordCountText.textContent).toBe('05');
+    });
 
 
-
-
-
-
-
-
-
-
+    // test 4
+    test('ignores multiple spaces between words', () => {
+        textArea.value = 'Hello    world   this   is   test';
+        countNumberOfWords( textArea, wordCountText );
+        expect(wordCountText.textContent).toBe('05');
+    });
 
 
 
