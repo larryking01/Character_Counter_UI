@@ -9,7 +9,7 @@ const {
     toggleNoDensityAvailableYet,
     checkCharacterLimit
 
-} = require("./characterCounter.js")
+} = require("../characterCounter.js")
 
 
 
@@ -22,6 +22,7 @@ describe("Check character count logic for when spacing is allowed or not", funct
     let excludeSpacesCheckbox;
     let characterCountText;
     let wordCountText;
+    let sentenceCountText;
 
 
     // set up the needed DOM elements before each test.
@@ -38,13 +39,16 @@ describe("Check character count logic for when spacing is allowed or not", funct
         // Mock character count display element
         characterCountText = document.createElement("h3");
 
-
         // Mock word count text
         wordCountText = document.createElement("h3");
+
+        // Mock sentence count text
+        sentenceCountText = document.createElement("h3");
 
     });
 
 
+    // TESTS FOR CHARACTER COUNT
     // test 1: checking if the character count logic works as expected
     test("Counts characters including spaces when checkbox is unchecked", () => {
         countCharacters( textArea, excludeSpacesCheckbox, characterCountText );
@@ -64,6 +68,7 @@ describe("Check character count logic for when spacing is allowed or not", funct
     });
 
 
+    // TESTS FOR WORD COUNT
     // test 3:
     test('counts single words correctly', () => {
         textArea.value = "Google";
@@ -110,6 +115,63 @@ describe("Check character count logic for when spacing is allowed or not", funct
         countNumberOfWords( textArea, wordCountText );
         expect(wordCountText.textContent).toBe('05'); 
     });
+
+
+
+    // TESTE FOR SENTENCE COUNT 
+    // test 9
+    test('counts single sentence with period correctly', () => {
+        textArea.value = 'This is a test.';
+        countNumberOfSentences( textArea, sentenceCountText );
+        expect(sentenceCountText.textContent).toBe('01');
+    });
+
+
+    // test 10.
+    test('counts multiple sentences with different punctuation correctly', () => {
+        textArea.value = 'Hello! Are you okay? This is fine.';
+        countNumberOfSentences( textArea, sentenceCountText );
+        expect(sentenceCountText.textContent).toBe('03');
+    });
+
+
+    // test 11
+    test('ignores trailing spaces and empty sentences', () => {
+        textArea.value = 'Wow!   That was awesome.   ';
+        countNumberOfSentences( textArea, sentenceCountText );
+        expect(sentenceCountText.textContent).toBe('02');
+    });
+
+
+    // test 12
+    test('counts sentences even with no space after punctuation', () => {
+        textArea.value = 'Hi!How are you?Good.';
+        countNumberOfSentences( textArea, sentenceCountText );
+        expect(sentenceCountText.textContent).toBe('03');
+    });
+
+
+    // test 13
+    test('returns 00 when input is empty or just spaces', () => {
+        textArea.value = '   ';
+        countNumberOfSentences( textArea, sentenceCountText );
+        expect(sentenceCountText.textContent).toBe('00');
+    });
+
+
+    // test 14
+    // test('handles punctuation within text correctly', () => {
+    //     textArea.value = 'Dr. Smith went to the U.S.A. He arrived at 10 a.m. Amazing!';
+    //     countNumberOfSentences( textArea, sentenceCountText );
+    //     expect(sentenceCountText.textContent).toBe('03'); // Could be debated based on real rules, but for now this regex treats each punctuation mark as a separator.
+    // });
+    // failed. debug
+
+
+
+
+
+
 
 
     

@@ -44,6 +44,8 @@ function countCharacters( textArea, excludeSpacesCheckbox, characterCountText ) 
 
 // function to calculate the number of words.
 function countNumberOfWords( textArea, wordCountText ) {
+    if (!textArea || !wordCountText) return;
+
     let enteredText = textArea.value.trim();
     let enteredWords = enteredText.split(/\s+/).filter( word => word.length > 0 );
 
@@ -65,7 +67,9 @@ function countNumberOfWords( textArea, wordCountText ) {
 
 
 // function to calculate the number of sentences.
-function countNumberOfSentences() {
+function countNumberOfSentences( textArea, sentenceCountText ) {
+    if (!textArea || !sentenceCountText) return;
+
     let enteredText = textArea.value.trim()
 
     let sentences = enteredText.split(/(?<=[.!?])/)
@@ -257,7 +261,7 @@ if( textArea ) {
     textArea.addEventListener('input', function () {
         countCharacters( textArea, excludeSpacesCheckbox, characterCountText );
         countNumberOfWords( textArea, wordCountText );
-        countNumberOfSentences();
+        countNumberOfSentences( textArea, sentenceCountText );
         calculateApproxReadingTime();
         checkCharacterLimit();
         calculateLetterDensity();
