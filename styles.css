@@ -51,6 +51,16 @@ body {
 }
 
 
+/* light mode override */
+body.light-theme {
+    background-image: url('assets/images/bg-light-theme.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    overflow-x: hidden;
+
+}
+
+
 
 .container {
     max-width: 61.875rem;
@@ -141,6 +151,7 @@ body {
 
 .text-area-section .character-limit-checkbox {
     cursor: pointer;
+
 }
 
 
