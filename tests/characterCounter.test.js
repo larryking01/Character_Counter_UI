@@ -53,6 +53,20 @@ describe("Check character count logic for when spacing is allowed or not", funct
     })
 
 
+    // test 2: 
+    test('counts characters excluding spaces when checkbox is checked', () => {
+        textArea.value = 'Coding is tough!';
+        excludeSpacesCheckbox.checked = true;
+        countCharacters( textArea, excludeSpacesCheckbox, characterCountText );
+    
+        // "Helloworld!" has 11 characters excluding space
+        expect(characterCountText.textContent).toBe('14');
+    });
+    
+
+
+
+
 
 
 
