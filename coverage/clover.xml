@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1745432833664" clover="3.2.0">
-  <project timestamp="1745432833664" name="All files">
-    <metrics statements="130" coveredstatements="23" conditionals="45" coveredconditionals="10" methods="18" coveredmethods="1" elements="193" coveredelements="34" complexity="0" loc="130" ncloc="130" packages="1" files="1" classes="1"/>
+<coverage generated="1745434037531" clover="3.2.0">
+  <project timestamp="1745434037532" name="All files">
+    <metrics statements="130" coveredstatements="30" conditionals="45" coveredconditionals="11" methods="18" coveredmethods="3" elements="193" coveredelements="44" complexity="0" loc="130" ncloc="130" packages="1" files="1" classes="1"/>
     <file name="characterCounter.js" path="C:\Projects\AmaliTech_Lab_Solutions\01. Character_Counter_UI\tests\characterCounter.js">
-      <metrics statements="130" coveredstatements="23" conditionals="45" coveredconditionals="10" methods="18" coveredmethods="1"/>
+      <metrics statements="130" coveredstatements="30" conditionals="45" coveredconditionals="11" methods="18" coveredmethods="3"/>
       <line num="2" count="1" type="stmt"/>
       <line num="3" count="1" type="stmt"/>
       <line num="4" count="1" type="stmt"/>
@@ -24,14 +24,14 @@
       <line num="34" count="0" type="stmt"/>
       <line num="37" count="2" type="stmt"/>
       <line num="40" count="2" type="stmt"/>
-      <line num="47" count="0" type="stmt"/>
-      <line num="48" count="0" type="stmt"/>
-      <line num="50" count="0" type="stmt"/>
-      <line num="51" count="0" type="stmt"/>
-      <line num="53" count="0" type="cond" truecount="0" falsecount="2"/>
-      <line num="54" count="0" type="stmt"/>
+      <line num="47" count="6" type="stmt"/>
+      <line num="48" count="22" type="stmt"/>
+      <line num="50" count="6" type="stmt"/>
+      <line num="51" count="6" type="stmt"/>
+      <line num="53" count="6" type="cond" truecount="1" falsecount="1"/>
+      <line num="54" count="6" type="stmt"/>
       <line num="57" count="0" type="stmt"/>
-      <line num="60" count="0" type="stmt"/>
+      <line num="60" count="6" type="stmt"/>
       <line num="69" count="0" type="stmt"/>
       <line num="71" count="0" type="stmt"/>
       <line num="72" count="0" type="stmt"/>

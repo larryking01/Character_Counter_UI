@@ -80,7 +80,7 @@ describe("Check character count logic for when spacing is allowed or not", funct
     });
 
 
-    // test 4
+    // test 5
     test('ignores multiple spaces between words', () => {
         textArea.value = 'Hello    world   this   is   test';
         countNumberOfWords( textArea, wordCountText );
@@ -88,7 +88,7 @@ describe("Check character count logic for when spacing is allowed or not", funct
     });
 
 
-    // test 5
+    // test 6
     test('ignores leading and trailing spaces', () => {
         textArea.value = '   Hello world this is test   ';
         countNumberOfWords( textArea, wordCountText );
@@ -96,13 +96,20 @@ describe("Check character count logic for when spacing is allowed or not", funct
     });
 
 
-    // test 6
+    // test 7
     test('returns 00 when input is empty or just spaces', () => {
         textArea.value = '     ';
         countNumberOfWords( textArea, wordCountText );
         expect(wordCountText.textContent).toBe('00');
     });
 
+
+    // test 8
+    test('counts words correctly when special characters are present', () => {
+        textArea.value = 'Hello @world! Are you ready?';
+        countNumberOfWords( textArea, wordCountText );
+        expect(wordCountText.textContent).toBe('05'); 
+    });
 
 
     

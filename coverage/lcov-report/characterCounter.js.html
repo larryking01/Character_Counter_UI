@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">17.29% </span>
+                <span class="strong">23.3% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>23/133</span>
+                <span class='fraction'>31/133</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">22.22% </span>
+                <span class="strong">24.44% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>10/45</span>
+                <span class='fraction'>11/45</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">5.55% </span>
+                <span class="strong">16.66% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>1/18</span>
+                <span class='fraction'>3/18</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">17.69% </span>
+                <span class="strong">23.07% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>23/130</span>
+                <span class='fraction'>30/130</span>
             </div>
         
             
@@ -404,20 +404,20 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">22x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">6x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">6x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -698,21 +698,21 @@ function countCharacters( textArea, excludeSpacesCheckbox, characterCountText ) 
 &nbsp;
 &nbsp;
 // function to calculate the number of words.
-function <span class="fstat-no" title="function not covered" >countNumberOfWords(</span> textArea, wordCountText ) {
-    let enteredText = <span class="cstat-no" title="statement not covered" >textArea.value.trim();</span>
-    let enteredWords = <span class="cstat-no" title="statement not covered" >enteredText.split(/\s+/).filter( <span class="fstat-no" title="function not covered" >wo</span>rd =&gt; <span class="cstat-no" title="statement not covered" >word.length &gt; 0 </span>);</span>
+function countNumberOfWords( textArea, wordCountText ) {
+    let enteredText = textArea.value.trim();
+    let enteredWords = enteredText.split(/\s+/).filter( word =&gt; word.length &gt; 0 );
 &nbsp;
-    let numberOfWords = <span class="cstat-no" title="statement not covered" >enteredWords.length;</span>
-    let numberOfWordsStringText = <span class="cstat-no" title="statement not covered" >numberOfWords.toString();</span>
+    let numberOfWords = enteredWords.length;
+    let numberOfWordsStringText = numberOfWords.toString();
 &nbsp;
-<span class="cstat-no" title="statement not covered" >    if( numberOfWordsStringText.length &lt; 2) {</span>
-<span class="cstat-no" title="statement not covered" >        numberOfWordsStringText = '0' + numberOfWordsStringText</span>
+    if( numberOfWordsStringText.length &lt; 2) {
+        numberOfWordsStringText = '0' + numberOfWordsStringText
     }
-    else {
+    else <span class="missing-if-branch" title="else path not taken" >E</span>{
 <span class="cstat-no" title="statement not covered" >        numberOfWordsStringText = numberOfWordsStringText</span>
     }
 &nbsp;
-<span class="cstat-no" title="statement not covered" >    wordCountText.textContent = numberOfWordsStringText</span>
+    wordCountText.textContent = numberOfWordsStringText
 &nbsp;
 }
 &nbsp;
@@ -955,7 +955,7 @@ module.exports = {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2025-04-23T18:27:13.570Z
+                at 2025-04-23T18:47:17.443Z
             </div>
         <script src="prettify.js"></script>
         <script>
