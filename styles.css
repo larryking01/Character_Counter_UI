@@ -32,7 +32,10 @@
     --light-sub-text-col: #2A2B37;
     --cols-neutral-900: #12131A;
     --cols-neutral-600: #404254;
-    --cols-neutral-100: #F2F2F7
+    --cols-neutral-100: #F2F2F7;
+    --text-exceeded-dark-bg: #FE8159;
+    --light-text-exceeded-bg: #DA3701;
+    --cols-neutral-200: #E4E4EF;
 }
 
 
@@ -160,15 +163,24 @@ body {
 }
 
 
+
 .text-area:focus {
     border-color: var(--text-area-focus);
-    box-shadow: 0px 4px 4px solid var(--text-area-focus);
+    box-shadow: 0 0 5px 1px var(--text-area-focus);
 }
 
 
 .text-area:focus.limit-exceeded {
-    border: 2px solid red !important;
+    border-color: var(--text-exceeded-dark-bg);
+    box-shadow: 0 0 5px 1px var(--text-exceeded-dark-bg) !important;
 }
+
+
+.light-theme .text-area:focus {
+    border-color: var(--text-area-focus);
+    box-shadow: 0 0 5px 1px 0 var(--text-area-focus);
+}
+
 
 
 .light-theme .text-area {
@@ -176,6 +188,13 @@ body {
     color: var(--light-sub-text-col)
 
 }
+
+
+.light-theme .text-area:hover {
+    cursor: pointer;
+    background-color: var(--cols-neutral-200);
+}
+
 
 
 
@@ -261,13 +280,33 @@ body {
 }
 
 
+.light-theme .show-character-limit-input {
+    width: 4rem;
+    height: 1.9rem;
+    background-color: var(--cols-neutral-100);
+    color: var(--cols-neutral-900);
+    border: 1px solid var(--purple-col);
+    border-radius: 0.3rem;
+    padding: 0 1rem ;
+    font-family: 'DMSansRegular';
+}
+
+
+
 .error-text {
     display: none;
 }
 
 
 .show-error-text {
-    color: red;
+    color: var(--orange-col);
+    font-family: 'DMSansRegular', sans-serif;
+    margin-bottom: 0.5rem;
+}
+
+
+.light-theme .show-error-text {
+    color: var(--orange-col);
     font-family: 'DMSansRegular', sans-serif;
     margin-bottom: 0.5rem;
 }
@@ -550,6 +589,14 @@ body {
     }
 
 
+    .light-theme .analyze-text {
+        font-family: 'DMSansBold', sans-serif;
+        font-size: 3.5rem;
+        text-align: center;
+        color: var(--cols-neutral-900);
+    }
+
+
     /* text area section */
     .text-area-section {
         margin-bottom: 2.5rem;
@@ -568,6 +615,31 @@ body {
         box-shadow: none;
         color: var(--white-col);
         font-size: 1rem;
+    }
+
+
+    .light-theme .text-area {
+        width: 44rem;
+        height: 12.5rem;
+        padding: 1rem;
+        margin: 0 2rem 1rem 2rem;
+        background-color: var(--cols-neutral-100 )!important;
+        border-radius: 0.75rem;
+        resize: none;
+        outline: none;
+        box-shadow: none;
+        color: var(--cols-neutral-900);
+        font-size: 1rem;
+    }
+
+
+    .light-theme .text-area:hover {
+        background-color: var( --cols-neutral-200 );
+    }
+
+
+    .light-theme .text-area:focus {
+        box-shadow: 0 4px 4px var(--purple-col);
     }
 
 
@@ -701,8 +773,6 @@ body {
     }
 
 
-
-
     /* letter density section */
     .letter-density-section {
         width: 44rem;
@@ -716,6 +786,15 @@ body {
         font-weight: bolder;
         margin-bottom: 1.25rem;
         color: var(--white-col-200)
+    }
+
+
+    .light-theme .letter-density-text {
+        font-family: 'DMSansSemiBold', sans-serif;
+        font-size: 1.5rem;
+        font-weight: bolder;
+        margin-bottom: 1.25rem;
+        color: var(--cols-neutral-900)
     }
 
 
@@ -747,6 +826,22 @@ body {
         font-size: 1rem;
         color: var(--white-col-200);
         font-weight: normal;
+    }
+
+
+    .light-theme .no-characters-found-text {
+        color: var(--cols-neutral-600);
+    }
+
+
+    .light-theme .letter-density-info-text {
+        color: var(--cols-neutral-600);
+    }
+
+
+    .light-theme .density-bar-parent-div {
+        background-color: var(--cols-neutral-100);
+
     }
 
 }
@@ -808,6 +903,15 @@ body {
         color: var(--white-col);
     }
 
+    .light-theme  .header-section .analyze-text {
+        font-family: 'DMSansBold', sans-serif;
+        margin: 0 1rem 0 1rem;
+        font-size: 2.5rem;
+        text-align: center;
+        color: var(--cols-neutral-900);
+    }
+
+
 
     /* text area section styles */
     .text-area-section {
@@ -826,6 +930,22 @@ body {
         outline: none;
         box-shadow: none;
         color: var(--white-col);
+        font-size: 1.25rem;
+        line-height: 140%;
+    }
+
+
+    .light-theme .text-area-section .text-area {
+        width: 21.438rem;
+        height: 12.5rem;
+        padding: 1rem;
+        margin: 0 1rem 1rem 1rem;
+        background-color: var(--light-grey-col);
+        border-radius: 0.75rem;
+        resize: none;
+        outline: none;
+        box-shadow: none;
+        color: var(--cols-neutral-900);
         font-size: 1.25rem;
         line-height: 140%;
     }
@@ -986,6 +1106,15 @@ body {
     }
 
 
+    .light-theme .letter-density-text {
+        font-family: 'DMSansSemiBold', sans-serif;
+        font-size: 1.5rem;
+        font-weight: bolder;
+        margin-bottom: 1.25rem;
+        color: var(--cols-neutral-900)
+    }
+
+
     .letter-density-section .letter-density-display-div {
         display: flex;
         justify-content: space-between;
@@ -1001,6 +1130,14 @@ body {
         border-radius: 62.438rem;
     }
 
+
+    .light-theme .density-bar-parent-div {
+        align-self: center;
+        width: 13.25rem;
+        height: 0.75rem;
+        background-color: var(--cols-neutral-100);
+        border-radius: 62.438rem;
+    }
 
     .letter-density-section .density-bar-child-div {
         width: 16%;

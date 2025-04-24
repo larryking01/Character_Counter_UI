@@ -16,7 +16,6 @@ let siteLogo = document.querySelector(".site-logo")
 let body = document.body;
 let isDark;
 
-// let lightModeIcon = require("../assets/images/bg-light-theme.png")
 
 
 // function to toggle light and dark theme
