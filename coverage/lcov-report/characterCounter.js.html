@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">45.32% </span>
+                <span class="strong">50.35% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>63/139</span>
+                <span class='fraction'>70/139</span>
             </div>
         
             
@@ -37,16 +37,16 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">38.88% </span>
+                <span class="strong">50% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>7/18</span>
+                <span class='fraction'>9/18</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">46.61% </span>
+                <span class="strong">51.12% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>62/133</span>
+                <span class='fraction'>68/133</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line low'></div>
+    <div class='status-line medium'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -364,8 +364,7 @@
 <a name='L299'></a><a href='#L299'>299</a>
 <a name='L300'></a><a href='#L300'>300</a>
 <a name='L301'></a><a href='#L301'>301</a>
-<a name='L302'></a><a href='#L302'>302</a>
-<a name='L303'></a><a href='#L303'>303</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L302'></a><a href='#L302'>302</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -461,13 +460,13 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">1407x</span>
+<span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -632,7 +631,6 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -762,14 +760,14 @@ function countNumberOfSentences( textArea, sentenceCountText ) {
 &nbsp;
 &nbsp;
 // function to calculate the approx. reading time.
-function <span class="fstat-no" title="function not covered" >calculateApproxReadingTime(</span>) {
-    let avgWordsPerMin = <span class="cstat-no" title="statement not covered" >200;</span>
-    let enteredText = <span class="cstat-no" title="statement not covered" >textArea.value.trim();</span>
-    let enteredWords = <span class="cstat-no" title="statement not covered" >enteredText.split(/\s+/).filter( <span class="fstat-no" title="function not covered" >wo</span>rd =&gt; <span class="cstat-no" title="statement not covered" >word.length &gt; 0 </span>);</span>
-    let numberOfWords = <span class="cstat-no" title="statement not covered" >enteredWords.length;</span>
+function calculateApproxReadingTime( textArea, approxReadingTimeText ) {
+    let avgWordsPerMin = 200;
+    let enteredText = textArea.value.trim();
+    let enteredWords = enteredText.split(/\s+/).filter( word =&gt; word.length &gt; 0 );
+    let numberOfWords = enteredWords.length;
     
-    let approxReadingTime = <span class="cstat-no" title="statement not covered" >Math.ceil( numberOfWords / avgWordsPerMin );</span>
-<span class="cstat-no" title="statement not covered" >    approxReadingTimeText.textContent = `Approx. reading time: ${ approxReadingTime } min(s)`</span>
+    let approxReadingTime = Math.ceil( numberOfWords / avgWordsPerMin );
+    approxReadingTimeText.textContent = `Approx. reading time: ${ approxReadingTime } min(s)`
 &nbsp;
 }
 &nbsp;
@@ -933,8 +931,7 @@ function <span class="fstat-no" title="function not covered" >toggleNoDensityAva
 <span class="cstat-no" title="statement not covered" >        countCharacters( textArea, excludeSpacesCheckbox, characterCountText );</span>
 <span class="cstat-no" title="statement not covered" >        countNumberOfWords( textArea, wordCountText );</span>
 <span class="cstat-no" title="statement not covered" >        countNumberOfSentences( textArea, sentenceCountText );</span>
-<span class="cstat-no" title="statement not covered" >        calculateApproxReadingTime();</span>
-        // checkCharacterLimit();
+<span class="cstat-no" title="statement not covered" >        calculateApproxReadingTime( textArea, approxReadingTimeText);</span>
 <span class="cstat-no" title="statement not covered" >        checkCharacterLimit( textArea, characterLimitInput, errorText, excludeSpacesCheckbox )</span>
 <span class="cstat-no" title="statement not covered" >        calculateLetterDensity();</span>
 <span class="cstat-no" title="statement not covered" >        toggleNoDensityAvailableYet();</span>
@@ -976,7 +973,7 @@ module.exports = {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2025-04-24T15:08:05.328Z
+                at 2025-04-24T15:30:14.784Z
             </div>
         <script src="prettify.js"></script>
         <script>

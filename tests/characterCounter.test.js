@@ -4,9 +4,6 @@ const {
     countNumberOfWords,
     countNumberOfSentences,
     calculateApproxReadingTime,
-    calculateLetterDensity,
-    toggleCharacterLimitInputVisible,
-    toggleNoDensityAvailableYet,
     checkCharacterLimit
 
 } = require("../characterCounter.js")
@@ -14,7 +11,6 @@ const {
 
 
 
-// test 1: checking to see if the number of characters updates correctly
 // in real-time taking into consideration when spaces are allowed or disallowed.
 // describe is like a label to group related tests together
 describe("Check character count logic for when spacing is allowed or not", function () {
@@ -164,7 +160,7 @@ describe("Check character count logic for when spacing is allowed or not", funct
 
 
 
-
+// related group of tests that check
 describe('checkCharacterLimit', () => {
     let textArea, characterLimitInput, excludeSpacesCheckbox, errorText;
 
@@ -256,14 +252,63 @@ describe('checkCharacterLimit', () => {
         expect(errorText.textContent).toBe('You are approaching the maximum character limit');
     });
 
-
-
-
-
-
-
-
-
 })
+
+
+
+describe('calculateApproxReadingTime', () => {
+    let textArea, approxReadingTimeText;
+
+    beforeEach(() => {
+        // Mock DOM elements
+        textArea = document.createElement('textarea');
+        approxReadingTimeText = document.createElement('div');
+
+        // Make them globally available
+        global.textArea = textArea;
+        global.approxReadingTimeText = approxReadingTimeText;
+    });
+
+    test('displays 1 minute for texts up to 200 words', () => {
+        textArea.value = 'word '.repeat(200).trim();
+
+        calculateApproxReadingTime( textArea, approxReadingTimeText );
+
+        expect(approxReadingTimeText.textContent).toBe('Approx. reading time: 1 min(s)');
+    });
+
+    test('displays 2 minutes for texts slightly above 200 words', () => {
+        textArea.value = 'word '.repeat(201).trim();
+
+        calculateApproxReadingTime(textArea, approxReadingTimeText);
+
+        expect(approxReadingTimeText.textContent).toBe('Approx. reading time: 2 min(s)');
+    });
+
+    test('displays 0 minutes for empty input', () => {
+        textArea.value = '   ';
+
+        calculateApproxReadingTime(textArea, approxReadingTimeText);
+
+        expect(approxReadingTimeText.textContent).toBe('Approx. reading time: 0 min(s)');
+    });
+
+    test('handles special characters and whitespace correctly', () => {
+        textArea.value = 'Hello!!   This... is,     spaced out??';
+
+        calculateApproxReadingTime(textArea, approxReadingTimeText);
+
+        // It should treat it as 6 words
+        expect(approxReadingTimeText.textContent).toBe('Approx. reading time: 1 min(s)');
+    });
+
+    test('displays correct reading time for long inputs (e.g. 1000 words)', () => {
+        textArea.value = 'word '.repeat(1000).trim();
+
+        calculateApproxReadingTime(textArea, approxReadingTimeText);
+
+        expect(approxReadingTimeText.textContent).toBe('Approx. reading time: 5 min(s)');
+    });
+});
 
 

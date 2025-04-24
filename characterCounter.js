@@ -93,7 +93,7 @@ function countNumberOfSentences( textArea, sentenceCountText ) {
 
 
 // function to calculate the approx. reading time.
-function calculateApproxReadingTime() {
+function calculateApproxReadingTime( textArea, approxReadingTimeText ) {
     let avgWordsPerMin = 200;
     let enteredText = textArea.value.trim();
     let enteredWords = enteredText.split(/\s+/).filter( word => word.length > 0 );
@@ -264,8 +264,7 @@ if( textArea ) {
         countCharacters( textArea, excludeSpacesCheckbox, characterCountText );
         countNumberOfWords( textArea, wordCountText );
         countNumberOfSentences( textArea, sentenceCountText );
-        calculateApproxReadingTime();
-        // checkCharacterLimit();
+        calculateApproxReadingTime( textArea, approxReadingTimeText);
         checkCharacterLimit( textArea, characterLimitInput, errorText, excludeSpacesCheckbox )
         calculateLetterDensity();
         toggleNoDensityAvailableYet();
