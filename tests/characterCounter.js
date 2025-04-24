@@ -10,19 +10,47 @@ let characterLimitCheckbox = document.querySelector(".character-limit-checkbox")
 let errorText = document.querySelector(".error-text");
 let letterDensityDiv = document.getElementById("letter-density-container")
 let noDensityAvailableYetText = document.querySelector(".no-characters-found-text")
+let toggleButton = document.querySelector(".theme-toggle-btn")
+let themeIcon = document.querySelector(".theme-icon")
+let siteLogo = document.querySelector(".site-logo")
+let body = document.body;
+let isDark;
 
 
+
+// function to toggle light and dark theme
+function toggleTheme() {
+    isDark = body.classList.contains("light-theme")
+    console.log(isDark)
+
+    if( body.classList.contains('dark-theme')) {
+        body.classList.replace("dark-theme", "light-theme")
+        themeIcon.src = "../assets/images/icon-moon.svg"
+        siteLogo.src = "../assets/images/logo-light-theme.svg"
+    }
+    else {
+        body.classList.replace("light-theme", "dark-theme")
+        themeIcon.src = "../assets/images/icon-sun.svg"
+        siteLogo.src = "../assets/images/logo-dark-theme.svg"
+
+    }
+}
 
 
 
 // function to count the number of characters in the text area.
-function countCharacters() {
+function countCharacters( textArea, excludeSpacesCheckbox, characterCountText ) {
+    if (!textArea || !excludeSpacesCheckbox || !characterCountText) return;
+
     let totalCharacters;
+
     let enteredText = textArea.value;
     let enteredTextNoSpaces = textArea.value.trim()
                               .replace(/\s/g, '');
 
-    totalCharacters = excludeSpacesCheckbox.checked ? enteredTextNoSpaces.length : enteredText.length
+    totalCharacters = excludeSpacesCheckbox.checked ? 
+                      enteredTextNoSpaces.length 
+                      : enteredText.length
 
     let totalCharacterStringText = totalCharacters.toString()
     if( totalCharacterStringText.length < 2 ) {
@@ -38,7 +66,7 @@ function countCharacters() {
 
 
 // function to calculate the number of words.
-function countNumberOfWords() {
+function countNumberOfWords( textArea, wordCountText ) {
     let enteredText = textArea.value.trim();
     let enteredWords = enteredText.split(/\s+/).filter( word => word.length > 0 );
 
@@ -115,10 +143,6 @@ function checkCharacterLimit() {
 
     totalCharacters = excludeSpacesCheckbox.checked ? enteredTextNoSpaces.length : enteredText.length
     eightyPercent = Math.floor( 0.8 * characterLimit );
-
-    // console.log(`total characters = ${ totalCharacters }`);
-    // console.log(`character limit = ${ characterLimit }`);
-    // console.log(`eighty percent = ${ eightyPercent }`);
 
     if( totalCharacters < eightyPercent || totalCharacters === eightyPercent ) {
         textArea.classList.remove("limit-exceeded");
@@ -226,14 +250,10 @@ function calculateLetterDensity ( ) {
                   
         })
 
-
         letterDensityDiv.appendChild(toggleDiv)
     }
 
-
-
 }
-
 
 
 
@@ -251,31 +271,56 @@ function toggleNoDensityAvailableYet () {
 
 
 
+
+
+
 // adding the event handler to the text area.
-textArea.addEventListener('input', function () {
-    countCharacters();
-    countNumberOfWords();
-    countNumberOfSentences();
-    calculateApproxReadingTime();
-    checkCharacterLimit();
-    calculateLetterDensity();
-    toggleNoDensityAvailableYet();
-})
+if( textArea ) {
+    textArea.addEventListener('input', function () {
+        countCharacters( textArea, excludeSpacesCheckbox, characterCountText );
+        countNumberOfWords( textArea, wordCountText );
+        countNumberOfSentences();
+        calculateApproxReadingTime();
+        checkCharacterLimit();
+        calculateLetterDensity();
+        toggleNoDensityAvailableYet();
+    })
+}
 
 
 // adding event listeners to the checkbox
-excludeSpacesCheckbox.addEventListener('change', function () {
-    countCharacters();
-})
+if( excludeSpacesCheckbox ) {
+    excludeSpacesCheckbox.addEventListener('change', function () {
+        countCharacters(textArea, excludeSpacesCheckbox, characterCountText);
+    })
+}
 
 
 // adding event listeners to the character limit checkbox 
-characterLimitCheckbox.addEventListener('change', function () {
-    toggleCharacterLimitInputVisible()
-})
+if ( characterLimitCheckbox ) {
+    characterLimitCheckbox.addEventListener('change', function () {
+        toggleCharacterLimitInputVisible()
+    })
+}
 
 
-// adding event listeners to the character limit input
-characterLimitInput.addEventListener('input', function () {
-    console.log( characterLimitInput.value )
-})
+// adding event listeners to toggle button
+if( toggleButton ) {
+    toggleButton.addEventListener("click", function () {
+        toggleTheme()
+    })
+}
+
+
+
+// exporting the functions to facilitate testing
+// module.exports = {
+//     countCharacters,
+//     countNumberOfWords,
+//     countNumberOfSentences,
+//     calculateApproxReadingTime,
+//     calculateLetterDensity,
+//     toggleCharacterLimitInputVisible,
+//     toggleNoDensityAvailableYet,
+//     checkCharacterLimit
+// }
