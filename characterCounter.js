@@ -113,7 +113,9 @@ function toggleCharacterLimitInputVisible() {
 
 
 
-function checkCharacterLimit() {
+function checkCharacterLimit( textArea, characterLimitInput, errorText, excludeSpacesCheckbox ) {
+    if (!textArea || !characterLimitInput || !errorText || !excludeSpacesCheckbox ) return;
+
     let characterLimit = parseInt(characterLimitInput.value);
     let enteredText = textArea.value;
     let enteredTextNoSpaces = textArea.value.trim()
@@ -263,7 +265,8 @@ if( textArea ) {
         countNumberOfWords( textArea, wordCountText );
         countNumberOfSentences( textArea, sentenceCountText );
         calculateApproxReadingTime();
-        checkCharacterLimit();
+        // checkCharacterLimit();
+        checkCharacterLimit( textArea, characterLimitInput, errorText, excludeSpacesCheckbox )
         calculateLetterDensity();
         toggleNoDensityAvailableYet();
     })

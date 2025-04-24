@@ -158,23 +158,111 @@ describe("Check character count logic for when spacing is allowed or not", funct
         expect(sentenceCountText.textContent).toBe('00');
     });
 
-
-    // test 14
-    // test('handles punctuation within text correctly', () => {
-    //     textArea.value = 'Dr. Smith went to the U.S.A. He arrived at 10 a.m. Amazing!';
-    //     countNumberOfSentences( textArea, sentenceCountText );
-    //     expect(sentenceCountText.textContent).toBe('03'); // Could be debated based on real rules, but for now this regex treats each punctuation mark as a separator.
-    // });
-    // failed. debug
+})
 
 
 
 
 
 
+describe('checkCharacterLimit', () => {
+    let textArea, characterLimitInput, excludeSpacesCheckbox, errorText;
+
+    beforeEach(() => {
+        // Set up DOM elements
+        textArea = document.createElement('textarea');
+        characterLimitInput = document.createElement('input');
+        characterLimitInput.type = 'number';
+        excludeSpacesCheckbox = document.createElement('input');
+        excludeSpacesCheckbox.type = 'checkbox';
+        errorText = document.createElement('div');
+
+        // Add necessary class manipulation methods
+        textArea.classList = errorText.classList = {
+            classes: [],
+            add(className) { this.classes.push(className); },
+            remove(className) { this.classes = this.classes.filter(c => c !== className); },
+            contains(className) { return this.classes.includes(className); }
+        };
+
+        global.textArea = textArea;
+        global.characterLimitInput = characterLimitInput;
+        global.excludeSpacesCheckbox = excludeSpacesCheckbox;
+        global.errorText = errorText;
+    });
 
 
-    
+    // test 14.
+    test('does nothing when total characters are below 80% of limit', () => {
+        textArea.value = 'Hello';
+        characterLimitInput.value = '100';
+        excludeSpacesCheckbox.checked = false;
+
+        checkCharacterLimit( textArea, characterLimitInput, errorText, excludeSpacesCheckbox )
+
+        expect(errorText.textContent).toBe('');
+        expect(errorText.classList.contains('error-text')).toBe(true);
+    });
+
+
+    // test 15
+    test('shows "approaching limit" warning when character count is above 80% but below limit', () => {
+        textArea.value = 'a'.repeat(85); // 85% of 100
+        characterLimitInput.value = '100';
+        excludeSpacesCheckbox.checked = false;
+
+        checkCharacterLimit( textArea, characterLimitInput, errorText, excludeSpacesCheckbox )
+
+        expect(errorText.textContent).toBe('You are approaching the maximum character limit');
+        expect(errorText.classList.contains('show-error-text')).toBe(true);
+    });
+
+
+
+    // test 16.
+    test('shows "hit maximum limit" warning when total characters === limit', () => {
+        textArea.value = 'a'.repeat(100);
+        characterLimitInput.value = '100';
+        excludeSpacesCheckbox.checked = false;
+
+        checkCharacterLimit( textArea, characterLimitInput, errorText, excludeSpacesCheckbox )
+
+        expect(errorText.textContent).toBe('You have hit the maximum limit of 100 characters');
+        expect(textArea.classList.contains('limit-exceeded')).toBe(false);
+    });
+
+
+    // test 17
+    test('shows "limit exceeded" warning when total characters > limit', () => {
+        textArea.value = 'a'.repeat(120);
+        characterLimitInput.value = '100';
+        excludeSpacesCheckbox.checked = false;
+
+        checkCharacterLimit( textArea, characterLimitInput, errorText, excludeSpacesCheckbox )
+
+        expect(errorText.textContent).toBe('Limit reached! Your text exceeds 100 characters.');
+        expect(textArea.classList.contains('limit-exceeded')).toBe(true);
+    });
+
+
+    // test 18
+    test('correctly excludes spaces if checkbox is checked', () => {
+        textArea.value = 'a a a a a'; // 9 characters with spaces, 5 without
+        characterLimitInput.value = '6';
+        excludeSpacesCheckbox.checked = true;
+
+        checkCharacterLimit( textArea, characterLimitInput, errorText, excludeSpacesCheckbox )
+
+        expect(errorText.textContent).toBe('You are approaching the maximum character limit');
+    });
+
+
+
+
+
+
+
+
 
 })
 
