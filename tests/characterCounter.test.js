@@ -11,9 +11,9 @@ const {
 
 
 
-// in real-time taking into consideration when spaces are allowed or disallowed.
-// describe is like a label to group related tests together
-describe("Check character count logic for when spacing is allowed or not", function () {
+// this series of related tests checks the logic for the character, word and sentence count.
+// it takes into consideration both situations where spaces is allowed and disallowed.
+describe("Text analysis: character, word, and sentence count with and without spaces", function () {
     let textArea;
     let excludeSpacesCheckbox;
     let characterCountText;
@@ -45,8 +45,8 @@ describe("Check character count logic for when spacing is allowed or not", funct
 
 
     // TESTS FOR CHARACTER COUNT
-    // test 1: checking if the character count logic works as expected
-    test("Counts characters including spaces when checkbox is unchecked", () => {
+    // test 1:
+    test("Counts characters including spaces when exclude spaces checkbox is unchecked", () => {
         countCharacters( textArea, excludeSpacesCheckbox, characterCountText );
         //"Coding is tough" has 16 characters including space and punctuation
         expect( characterCountText.textContent ).toBe("16");
@@ -54,7 +54,7 @@ describe("Check character count logic for when spacing is allowed or not", funct
 
 
     // test 2: 
-    test('counts characters excluding spaces when checkbox is checked', () => {
+    test('Counts characters excluding spaces when exclude spaces checkbox is checked', () => {
         textArea.value = 'Coding is tough!';
         excludeSpacesCheckbox.checked = true;
         countCharacters( textArea, excludeSpacesCheckbox, characterCountText );
@@ -64,9 +64,10 @@ describe("Check character count logic for when spacing is allowed or not", funct
     });
 
 
+
     // TESTS FOR WORD COUNT
     // test 3:
-    test('counts single words correctly', () => {
+    test('Counts single words correctly', () => {
         textArea.value = "Google";
         countNumberOfWords( textArea, wordCountText );
         expect( wordCountText.textContent ).toBe("01");
@@ -74,7 +75,7 @@ describe("Check character count logic for when spacing is allowed or not", funct
 
     
     // test 4:
-    test('counts multiple words correctly', () => {
+    test('Counts multiple words correctly', () => {
         textArea.value = 'Hello world this is test';
         countNumberOfWords( textArea, wordCountText );
         expect(wordCountText.textContent).toBe('05');
@@ -82,7 +83,7 @@ describe("Check character count logic for when spacing is allowed or not", funct
 
 
     // test 5
-    test('ignores multiple spaces between words', () => {
+    test('Ignores multiple spaces between words', () => {
         textArea.value = 'Hello    world   this   is   test';
         countNumberOfWords( textArea, wordCountText );
         expect(wordCountText.textContent).toBe('05');
@@ -90,7 +91,7 @@ describe("Check character count logic for when spacing is allowed or not", funct
 
 
     // test 6
-    test('ignores leading and trailing spaces', () => {
+    test('Ignores leading and trailing spaces', () => {
         textArea.value = '   Hello world this is test   ';
         countNumberOfWords( textArea, wordCountText );
         expect(wordCountText.textContent).toBe('05');
@@ -98,7 +99,7 @@ describe("Check character count logic for when spacing is allowed or not", funct
 
 
     // test 7
-    test('returns 00 when input is empty or just spaces', () => {
+    test('Returns 00 when input is empty or just spaces', () => {
         textArea.value = '     ';
         countNumberOfWords( textArea, wordCountText );
         expect(wordCountText.textContent).toBe('00');
@@ -106,7 +107,7 @@ describe("Check character count logic for when spacing is allowed or not", funct
 
 
     // test 8
-    test('counts words correctly when special characters are present', () => {
+    test('Counts words correctly when special characters are present', () => {
         textArea.value = 'Hello @world! Are you ready?';
         countNumberOfWords( textArea, wordCountText );
         expect(wordCountText.textContent).toBe('05'); 
@@ -116,7 +117,7 @@ describe("Check character count logic for when spacing is allowed or not", funct
 
     // TESTE FOR SENTENCE COUNT 
     // test 9
-    test('counts single sentence with period correctly', () => {
+    test('Counts single sentence with period correctly', () => {
         textArea.value = 'This is a test.';
         countNumberOfSentences( textArea, sentenceCountText );
         expect(sentenceCountText.textContent).toBe('01');
@@ -124,7 +125,7 @@ describe("Check character count logic for when spacing is allowed or not", funct
 
 
     // test 10.
-    test('counts multiple sentences with different punctuation correctly', () => {
+    test('Counts multiple sentences with different punctuation correctly', () => {
         textArea.value = 'Hello! Are you okay? This is fine.';
         countNumberOfSentences( textArea, sentenceCountText );
         expect(sentenceCountText.textContent).toBe('03');
@@ -132,7 +133,7 @@ describe("Check character count logic for when spacing is allowed or not", funct
 
 
     // test 11
-    test('ignores trailing spaces and empty sentences', () => {
+    test('Ignores trailing spaces and empty sentences', () => {
         textArea.value = 'Wow!   That was awesome.   ';
         countNumberOfSentences( textArea, sentenceCountText );
         expect(sentenceCountText.textContent).toBe('02');
@@ -140,7 +141,7 @@ describe("Check character count logic for when spacing is allowed or not", funct
 
 
     // test 12
-    test('counts sentences even with no space after punctuation', () => {
+    test('Counts sentences even with no space after punctuation', () => {
         textArea.value = 'Hi!How are you?Good.';
         countNumberOfSentences( textArea, sentenceCountText );
         expect(sentenceCountText.textContent).toBe('03');
@@ -148,7 +149,7 @@ describe("Check character count logic for when spacing is allowed or not", funct
 
 
     // test 13
-    test('returns 00 when input is empty or just spaces', () => {
+    test('Returns 00 when input is empty or just spaces', () => {
         textArea.value = '   ';
         countNumberOfSentences( textArea, sentenceCountText );
         expect(sentenceCountText.textContent).toBe('00');
@@ -160,15 +161,19 @@ describe("Check character count logic for when spacing is allowed or not", funct
 
 
 
-// related group of tests that check
-describe('checkCharacterLimit', () => {
+// related group of tests that check if a user is approaching the character limit,
+// has hit the character limit or has exceeded the character limit and
+// displays appropriate error messages in each case.
+describe('Character limit feedback: approaching, reaching, and exceeding limits with appropriate messages', () => {
     let textArea, characterLimitInput, excludeSpacesCheckbox, errorText;
 
     beforeEach(() => {
         // Set up DOM elements
         textArea = document.createElement('textarea');
+
         characterLimitInput = document.createElement('input');
         characterLimitInput.type = 'number';
+
         excludeSpacesCheckbox = document.createElement('input');
         excludeSpacesCheckbox.type = 'checkbox';
         errorText = document.createElement('div');
@@ -189,7 +194,7 @@ describe('checkCharacterLimit', () => {
 
 
     // test 14.
-    test('does nothing when total characters are below 80% of limit', () => {
+    test('Does nothing when total characters are below 80% of limit', () => {
         textArea.value = 'Hello';
         characterLimitInput.value = '100';
         excludeSpacesCheckbox.checked = false;
@@ -202,7 +207,7 @@ describe('checkCharacterLimit', () => {
 
 
     // test 15
-    test('shows "approaching limit" warning when character count is above 80% but below limit', () => {
+    test('Shows "approaching limit" warning when character count is above 80% but below limit', () => {
         textArea.value = 'a'.repeat(85); // 85% of 100
         characterLimitInput.value = '100';
         excludeSpacesCheckbox.checked = false;
@@ -216,7 +221,7 @@ describe('checkCharacterLimit', () => {
 
 
     // test 16.
-    test('shows "hit maximum limit" warning when total characters === limit', () => {
+    test('Shows "hit maximum limit" warning when total characters === limit', () => {
         textArea.value = 'a'.repeat(100);
         characterLimitInput.value = '100';
         excludeSpacesCheckbox.checked = false;
@@ -229,7 +234,7 @@ describe('checkCharacterLimit', () => {
 
 
     // test 17
-    test('shows "limit exceeded" warning when total characters > limit', () => {
+    test('Shows "limit exceeded" warning when total characters > limit', () => {
         textArea.value = 'a'.repeat(120);
         characterLimitInput.value = '100';
         excludeSpacesCheckbox.checked = false;
@@ -242,7 +247,7 @@ describe('checkCharacterLimit', () => {
 
 
     // test 18
-    test('correctly excludes spaces if checkbox is checked', () => {
+    test('Correctly excludes spaces if checkbox is checked', () => {
         textArea.value = 'a a a a a'; // 9 characters with spaces, 5 without
         characterLimitInput.value = '6';
         excludeSpacesCheckbox.checked = true;
@@ -256,7 +261,10 @@ describe('checkCharacterLimit', () => {
 
 
 
-describe('calculateApproxReadingTime', () => {
+// this group of related tests checks if the approximate reading time function
+// correctly calculates the estimated reading time for all cases.
+
+describe('Approximate reading time calculation for various input lengths', () => {
     let textArea, approxReadingTimeText;
 
     beforeEach(() => {
@@ -269,7 +277,9 @@ describe('calculateApproxReadingTime', () => {
         global.approxReadingTimeText = approxReadingTimeText;
     });
 
-    test('displays 1 minute for texts up to 200 words', () => {
+
+    // test 19
+    test('Displays 1 minute for texts up to 200 words', () => {
         textArea.value = 'word '.repeat(200).trim();
 
         calculateApproxReadingTime( textArea, approxReadingTimeText );
@@ -277,7 +287,9 @@ describe('calculateApproxReadingTime', () => {
         expect(approxReadingTimeText.textContent).toBe('Approx. reading time: 1 min(s)');
     });
 
-    test('displays 2 minutes for texts slightly above 200 words', () => {
+
+    // test 20
+    test('Displays 2 minutes for texts slightly above 200 words', () => {
         textArea.value = 'word '.repeat(201).trim();
 
         calculateApproxReadingTime(textArea, approxReadingTimeText);
@@ -285,7 +297,9 @@ describe('calculateApproxReadingTime', () => {
         expect(approxReadingTimeText.textContent).toBe('Approx. reading time: 2 min(s)');
     });
 
-    test('displays 0 minutes for empty input', () => {
+
+    // tests 21
+    test('Displays 0 minutes for empty input', () => {
         textArea.value = '   ';
 
         calculateApproxReadingTime(textArea, approxReadingTimeText);
@@ -293,7 +307,9 @@ describe('calculateApproxReadingTime', () => {
         expect(approxReadingTimeText.textContent).toBe('Approx. reading time: 0 min(s)');
     });
 
-    test('handles special characters and whitespace correctly', () => {
+
+    // test 22
+    test('Handles special characters and whitespace correctly', () => {
         textArea.value = 'Hello!!   This... is,     spaced out??';
 
         calculateApproxReadingTime(textArea, approxReadingTimeText);
@@ -302,7 +318,9 @@ describe('calculateApproxReadingTime', () => {
         expect(approxReadingTimeText.textContent).toBe('Approx. reading time: 1 min(s)');
     });
 
-    test('displays correct reading time for long inputs (e.g. 1000 words)', () => {
+
+    // test 23
+    test('Displays correct reading time for long inputs (e.g. 1000 words)', () => {
         textArea.value = 'word '.repeat(1000).trim();
 
         calculateApproxReadingTime(textArea, approxReadingTimeText);
