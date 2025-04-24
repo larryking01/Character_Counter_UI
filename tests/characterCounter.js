@@ -10,8 +10,32 @@ let characterLimitCheckbox = document.querySelector(".character-limit-checkbox")
 let errorText = document.querySelector(".error-text");
 let letterDensityDiv = document.getElementById("letter-density-container")
 let noDensityAvailableYetText = document.querySelector(".no-characters-found-text")
+let toggleButton = document.querySelector(".theme-toggle-btn")
+let themeIcon = document.querySelector(".theme-icon")
+let siteLogo = document.querySelector(".site-logo")
+let body = document.body;
+let isDark;
+
+// let lightModeIcon = require("../assets/images/bg-light-theme.png")
 
 
+// function to toggle light and dark theme
+function toggleTheme() {
+    isDark = body.classList.contains("light-theme")
+    console.log(isDark)
+
+    if( body.classList.contains('dark-theme')) {
+        body.classList.replace("dark-theme", "light-theme")
+        themeIcon.src = "../assets/images/icon-moon.svg"
+        siteLogo.src = "../assets/images/logo-light-theme.svg"
+    }
+    else {
+        body.classList.replace("light-theme", "dark-theme")
+        themeIcon.src = "../assets/images/icon-sun.svg"
+        siteLogo.src = "../assets/images/logo-dark-theme.svg"
+
+    }
+}
 
 
 
@@ -251,7 +275,6 @@ function toggleNoDensityAvailableYet () {
 
 
 
-
 // adding the event handler to the text area.
 if( textArea ) {
     textArea.addEventListener('input', function () {
@@ -282,15 +305,23 @@ if ( characterLimitCheckbox ) {
 }
 
 
+// adding event listeners to toggle button
+if( toggleButton ) {
+    toggleButton.addEventListener("click", function () {
+        toggleTheme()
+    })
+}
+
+
 
 // exporting the functions to facilitate testing
-module.exports = {
-    countCharacters,
-    countNumberOfWords,
-    countNumberOfSentences,
-    calculateApproxReadingTime,
-    calculateLetterDensity,
-    toggleCharacterLimitInputVisible,
-    toggleNoDensityAvailableYet,
-    checkCharacterLimit
-}
+// module.exports = {
+//     countCharacters,
+//     countNumberOfWords,
+//     countNumberOfSentences,
+//     calculateApproxReadingTime,
+//     calculateLetterDensity,
+//     toggleCharacterLimitInputVisible,
+//     toggleNoDensityAvailableYet,
+//     checkCharacterLimit
+// }
