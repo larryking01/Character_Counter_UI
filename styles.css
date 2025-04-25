@@ -206,6 +206,8 @@ body {
     color: var(--white-col-200);
     font-family: 'DMSansRegular', sans-serif;
     font-size: 1rem;
+    margin-left: 0.156rem;
+
 }
 
 
@@ -213,6 +215,7 @@ body {
     color: var(--cols-neutral-900);
     font-family: 'DMSansRegular', sans-serif;
     font-size: 1rem;
+    
 }
 
 
@@ -257,13 +260,143 @@ body {
 
 
 .text-area-section .checkbox {
+    appearance: none;
+    width: 1rem;
+    height: 0.93rem;
+    border: 1px solid var(--white-col);
+    background-color: var(--cols-neutral-900);
     cursor: pointer;
+    border-radius: 0.25rem;
+    position: relative;
+}
+
+.text-area-section .checkbox:checked {
+    background-color: var(--text-area-focus);
+    border: 1px solid var(--cols-neutral-900);
+
+}
+
+.text-area-section .checkbox::after {
+    content: '';
+    position: absolute;
+    left: 0.275rem;
+    top: 0.1rem;
+    width: 0.18rem;
+    height: 0.5rem;
+    border: solid var(--cols-neutral-900);
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
 }
 
 
+/* exclude spaces checkbox light theme config */
+.light-theme .text-area-section .checkbox {
+    appearance: none;
+    width: 1rem;
+    height: 0.93rem;
+    border: 1px solid var(--cols-neutral-600);
+    background-color: var(--white-col);
+    cursor: pointer;
+    border-radius: 0.25rem;
+    position: relative;
+}
+
+
+.light-theme .text-area-section .checkbox:checked {
+    background-color: var(--text-area-focus);
+
+}
+
+
+.light-theme .text-area-section .checkbox::after {
+    content: '';
+    position: absolute;
+    left: 0.275rem;
+    top: 0.1rem;
+    width: 0.18rem;
+    height: 0.5rem;
+    border: solid transparent;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+    pointer-events: none;
+
+}
+
+.light-theme .text-area-section .checkbox:checked::after {
+    border-color: var(--cols-neutral-900);
+}
+
+
+
+
+/* character limit checkbox */
 .text-area-section .character-limit-checkbox {
+    appearance: none;
+    width: 1rem;
+    height: 0.93rem;
+    border: 1px solid var(--white-col);
+    background-color: var(--cols-neutral-900);
     cursor: pointer;
+    border-radius: 0.25rem;
+    position: relative;
 }
+
+.text-area-section .character-limit-checkbox:checked {
+    background-color: var(--text-area-focus);
+    border: 1px solid var(--cols-neutral-900);
+
+}
+
+.text-area-section .character-limit-checkbox::after {
+    content: '';
+    position: absolute;
+    left: 0.275rem;
+    top: 0.1rem;
+    width: 0.18rem;
+    height: 0.5rem;
+    border: solid var(--cols-neutral-900);
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+}
+
+
+/* character limit checkbox light-theme config */
+.light-theme .text-area-section .character-limit-checkbox {
+    appearance: none;
+    width: 1rem;
+    height: 0.93rem;
+    border: 1px solid var(--cols-neutral-600);
+    background-color: var(--white-col);
+    cursor: pointer;
+    border-radius: 0.25rem;
+    position: relative;
+}
+
+
+.light-theme .text-area-section .character-limit-checkbox:checked {
+    background-color: var(--text-area-focus);
+}
+
+
+.light-theme .text-area-section .character-limit-checkbox::after {
+    content: '';
+    position: absolute;
+    left: 0.275rem;
+    top: 0.1rem;
+    width: 0.18rem;
+    height: 0.5rem;
+    border: solid transparent;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+    pointer-events: none;
+}
+
+.light-theme .text-area-section .character-limit-checkbox:checked::after {
+    border-color: var(--cols-neutral-900);
+}
+
+
+
 
 
 .text-area-section .count-options-div {
@@ -289,25 +422,25 @@ body {
 
 
 .show-character-limit-input {
-    width: 3.5rem;
-    height: 1.7rem;
+    width: 3.438rem;
+    height: 1.813rem;
     background-color: var(--black-col);
     color: var(--white-col-200);
-    border: 1px solid var(--purple-col);
+    border: 1px solid var(--cols-neutral-600);
     border-radius: 0.3rem;
-    padding: 0.6rem;
+    padding: 0 0.3rem ;
     font-family: 'DMSansRegular';
 }
 
 
 .light-theme .show-character-limit-input {
-    width: 4rem;
-    height: 1.9rem;
+    width: 3.438rem;
+    height: 1.813rem;
     background-color: var(--cols-neutral-100);
     color: var(--cols-neutral-900);
-    border: 1px solid var(--purple-col);
+    border: 1px solid var(--cols-neutral-900);
     border-radius: 0.3rem;
-    padding: 0 1rem ;
+    padding: 0 0.3rem ;
     font-family: 'DMSansRegular';
 }
 
