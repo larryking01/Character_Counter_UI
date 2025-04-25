@@ -39,8 +39,7 @@ function toggleTheme() {
 
 
 // function to count the number of characters in the text area.
-function countCharacters( textArea, excludeSpacesCheckbox, characterCountText ) {
-    if (!textArea || !excludeSpacesCheckbox || !characterCountText) return;
+function countCharacters( ) {
 
     let totalCharacters;
 
@@ -66,7 +65,7 @@ function countCharacters( textArea, excludeSpacesCheckbox, characterCountText ) 
 
 
 // function to calculate the number of words.
-function countNumberOfWords( textArea, wordCountText ) {
+function countNumberOfWords( ) {
     let enteredText = textArea.value.trim();
     let enteredWords = enteredText.split(/\s+/).filter( word => word.length > 0 );
 
@@ -277,8 +276,8 @@ function toggleNoDensityAvailableYet () {
 // adding the event handler to the text area.
 if( textArea ) {
     textArea.addEventListener('input', function () {
-        countCharacters( textArea, excludeSpacesCheckbox, characterCountText );
-        countNumberOfWords( textArea, wordCountText );
+        countCharacters( );
+        countNumberOfWords();
         countNumberOfSentences();
         calculateApproxReadingTime();
         checkCharacterLimit();
@@ -311,16 +310,3 @@ if( toggleButton ) {
     })
 }
 
-
-
-// exporting the functions to facilitate testing
-// module.exports = {
-//     countCharacters,
-//     countNumberOfWords,
-//     countNumberOfSentences,
-//     calculateApproxReadingTime,
-//     calculateLetterDensity,
-//     toggleCharacterLimitInputVisible,
-//     toggleNoDensityAvailableYet,
-//     checkCharacterLimit
-// }
