@@ -453,14 +453,14 @@ body {
 .show-error-text {
     color: var(--orange-col);
     font-family: 'DMSansRegular', sans-serif;
-    margin-bottom: 0.5rem;
+    margin-bottom: 1.2rem;
 }
 
 
 .light-theme .show-error-text {
     color: var(--orange-col);
     font-family: 'DMSansRegular', sans-serif;
-    margin-bottom: 0.5rem;
+    margin-bottom: 1.2rem;
 }
 
 
@@ -677,7 +677,7 @@ body {
 .see-more-density-div {
     font-family: 'DMSansRegular', sans-serif;
     color: var(--white-col);
-    font-size: 1rem;
+    font-size: 1.15rem;
     cursor: pointer;
 }
 
@@ -685,7 +685,7 @@ body {
 .light-theme .see-more-density-div {
     font-family: 'DMSansRegular', sans-serif;
     color: var(--cols-neutral-900);
-    font-size: 1rem;
+    font-size: 1.15rem;
     cursor: pointer;
 }
 
