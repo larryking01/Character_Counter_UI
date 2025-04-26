@@ -15,29 +15,28 @@ let themeIcon = document.querySelector(".theme-icon")
 let siteLogo = document.querySelector(".site-logo")
 let body = document.body;
 let isDark;
-let darkModeTrue = true;
+// let darkMode;
 
 
 
 // function to toggle light and dark theme
+// isDark = body.classList.contains("light-theme")
 function toggleTheme() {
-    isDark = body.classList.contains("light-theme")
 
     if( body.classList.contains('dark-theme')) {
-        darkModeTrue = true
-        console.log(`dark mode true = ${ darkModeTrue }`)
         body.classList.replace("dark-theme", "light-theme")
         themeIcon.src = "../assets/images/icon-moon.svg"
         siteLogo.src = "../assets/images/logo-light-theme.svg"
     }
     else {
-        darkModeTrue = false
-        console.log(`dark mode true = ${ darkModeTrue }`)
         body.classList.replace("light-theme", "dark-theme")
         themeIcon.src = "../assets/images/icon-sun.svg"
         siteLogo.src = "../assets/images/logo-dark-theme.svg"
-
     }
+
+
+    // After switching the theme, rebuild the letter density view
+    calculateLetterDensity()
 }
 
 
@@ -258,22 +257,25 @@ function calculateLetterDensity ( ) {
     if( letters.length > showLimit ) {
         const toggleDiv = document.createElement("div")
         toggleDiv.className = "see-more-density-div"
-        if( toggleDiv.classList.contains("light-theme") ) {
-            toggleDiv.innerHTML = `
-                <span>See more</span>
-                <svg width="12" height="7" viewBox="0 0 12 7" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M5.71875 6.375L1.09375 1.78125C0.9375 1.65625 0.9375 1.40625 1.09375 1.25L1.71875 0.65625C1.875 0.5 2.09375 0.5 2.25 0.65625L6 4.34375L9.71875 0.65625C9.875 0.5 10.125 0.5 10.25 0.65625L10.875 1.25C11.0312 1.40625 11.0312 1.65625 10.875 1.78125L6.25 6.375C6.09375 6.53125 5.875 6.53125 5.71875 6.375Z" fill="#E4E4EF"/>
-                </svg>
-                        `;
-        }
-        else {
-            toggleDiv.innerHTML = `
-                <span>See more</span>
-                <svg width="12" height="7" viewBox="0 0 12 7" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M5.71875 6.375L1.09375 1.78125C0.9375 1.65625 0.9375 1.40625 1.09375 1.25L1.71875 0.65625C1.875 0.5 2.09375 0.5 2.25 0.65625L6 4.34375L9.71875 0.65625C9.875 0.5 10.125 0.5 10.25 0.65625L10.875 1.25C11.0312 1.40625 11.0312 1.65625 10.875 1.78125L6.25 6.375C6.09375 6.53125 5.875 6.53125 5.71875 6.375Z" fill="#12131A"/>
-                </svg>
-                        `;
-        }
+        toggleDiv.innerHTML = body.classList.contains("light-theme") ?
+                            `
+                               <span>
+                                    <span>See more</span>
+                                    <svg width="12" height="7" viewBox="0 0 12 7" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M5.71875 6.375L1.09375 1.78125C0.9375 1.65625 0.9375 1.40625 1.09375 1.25L1.71875 0.65625C1.875 0.5 2.09375 0.5 2.25 0.65625L6 4.34375L9.71875 0.65625C9.875 0.5 10.125 0.5 10.25 0.65625L10.875 1.25C11.0312 1.40625 11.0312 1.65625 10.875 1.78125L6.25 6.375C6.09375 6.53125 5.875 6.53125 5.71875 6.375Z" fill="#12131A"/>
+                                    </svg>
+                               </span>
+                            `
+                                :
+
+                            `   <span>
+                                    <span>See More</span>
+                                    <svg width="12" height="7" viewBox="0 0 12 7" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M5.71875 6.375L1.09375 1.78125C0.9375 1.65625 0.9375 1.40625 1.09375 1.25L1.71875 0.65625C1.875 0.5 2.09375 0.5 2.25 0.65625L6 4.34375L9.71875 0.65625C9.875 0.5 10.125 0.5 10.25 0.65625L10.875 1.25C11.0312 1.40625 11.0312 1.65625 10.875 1.78125L6.25 6.375C6.09375 6.53125 5.875 6.53125 5.71875 6.375Z" fill="#E4E4EF"/>
+                                    </svg>
+                                </span>
+                            `
+
 
         let expanded = false
 
@@ -285,8 +287,45 @@ function calculateLetterDensity ( ) {
               bar.style.display = expanded ? 'flex' : 'none';
             });
 
-            toggleDiv.textContent = expanded ? 'See Less ▲' : 'See More ▼';
-                  
+            toggleDiv.innerHTML = expanded ?
+                body.classList.contains("light-theme") ?
+                    `
+                    <span>
+                    <span>See less</span>
+                    <svg width="12" height="7" viewBox="0 0 12 7" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M6.25 0.65625L10.875 5.21875C11.0312 5.375 11.0312 5.625 10.875 5.75L10.25 6.375C10.125 6.53125 9.875 6.53125 9.71875 6.375L6 2.6875L2.25 6.375C2.09375 6.53125 1.875 6.53125 1.71875 6.375L1.09375 5.75C0.9375 5.625 0.9375 5.375 1.09375 5.21875L5.71875 0.65625C5.875 0.5 6.09375 0.5 6.25 0.65625Z" fill="#12131A"/>
+                    </svg>
+                    </span>
+                    `
+                    :
+                    `
+                    <span>
+                    <span>See less</span>
+                    <svg width="12" height="7" viewBox="0 0 12 7" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M6.25 0.65625L10.875 5.21875C11.0312 5.375 11.0312 5.625 10.875 5.75L10.25 6.375C10.125 6.53125 9.875 6.53125 9.71875 6.375L6 2.6875L2.25 6.375C2.09375 6.53125 1.875 6.53125 1.71875 6.375L1.09375 5.75C0.9375 5.625 0.9375 5.375 1.09375 5.21875L5.71875 0.65625C5.875 0.5 6.09375 0.5 6.25 0.65625Z" fill="#E4E4EF"/>
+                    </svg>
+                    </span>
+                    `
+                : 
+                body.classList.contains("light-theme") ?
+                `
+                <span>
+                <span>See more</span>
+                <svg width="12" height="7" viewBox="0 0 12 7" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M5.71875 6.375L1.09375 1.78125C0.9375 1.65625 0.9375 1.40625 1.09375 1.25L1.71875 0.65625C1.875 0.5 2.09375 0.5 2.25 0.65625L6 4.34375L9.71875 0.65625C9.875 0.5 10.125 0.5 10.25 0.65625L10.875 1.25C11.0312 1.40625 11.0312 1.65625 10.875 1.78125L6.25 6.375C6.09375 6.53125 5.875 6.53125 5.71875 6.375Z" fill="#12131A"/>
+                </svg>
+                </span>
+                `
+                :
+                `
+                <span>
+                <span>See more</span>
+                <svg width="12" height="7" viewBox="0 0 12 7" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M5.71875 6.375L1.09375 1.78125C0.9375 1.65625 0.9375 1.40625 1.09375 1.25L1.71875 0.65625C1.875 0.5 2.09375 0.5 2.25 0.65625L6 4.34375L9.71875 0.65625C9.875 0.5 10.125 0.5 10.25 0.65625L10.875 1.25C11.0312 1.40625 11.0312 1.65625 10.875 1.78125L6.25 6.375C6.09375 6.53125 5.875 6.53125 5.71875 6.375Z" fill="#E4E4EF"/>
+                </svg>
+                </span>
+                `
+              
         })
 
         letterDensityDiv.appendChild(toggleDiv)
