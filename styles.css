@@ -408,7 +408,7 @@ body {
 .text-area-section .count-options-div {
     display: flex;
     justify-content: space-between;
-    margin-top: 0.6rem;
+    margin-top: 0.8rem;
 }
 
 
@@ -783,7 +783,7 @@ body {
     }
 
     .text-area-section .count-options-div {
-        margin-top: 0.6rem;
+        margin-top: 0.8rem;
     }
     
     .text-area-section .count-options-div div {
