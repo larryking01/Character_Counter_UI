@@ -390,3 +390,19 @@ if( toggleButton ) {
     })
 }
 
+
+// adding event handler for character limit input and setting it to not accept
+// any of the characters: ['e', 'E', '+', '-'];
+if( characterLimitInput ) {
+    const blockedCharacters = ['e', 'E', '+', '-']
+    characterLimitInput.addEventListener("keydown", function (e) {
+        // if( e.key.toLowerCase() === "e") {
+        //     e.preventDefault()
+        // }
+
+        if( blockedCharacters.includes( e.key )) {
+            e.preventDefault()    // blocks character from being entered
+        }
+
+    }
+)}
