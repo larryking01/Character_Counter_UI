@@ -202,6 +202,11 @@ body {
 
 
 
+.text-area-section .count-options-div div {
+    align-self: end;
+}
+
+
 .text-area-section .count-options-div span {
     color: var(--white-col-200);
     font-family: 'DMSansRegular', sans-serif;
@@ -224,6 +229,7 @@ body {
     font-size: 1rem;
     font-weight: normal;
     color: var(--white-col-200);
+    align-self: end;
 }
 
 
@@ -775,6 +781,16 @@ body {
         box-shadow: 0 4px 4px var(--purple-col);
     }
 
+    
+    .text-area-section .count-options-div div {
+        align-self: end;
+    }
+
+
+    .light-theme .text-area-section .count-options-div div {
+        align-self: end;
+    }
+
 
     .text-area-section .count-options-div {
         display: flex;
@@ -814,6 +830,7 @@ body {
         font-size: 1rem;
         font-weight: normal;
         color: var(--white-col-200);
+        align-self: end;
     }
 
 
@@ -822,6 +839,8 @@ body {
         font-size: 1rem;
         font-weight: normal;
         color: var(--cols-neutral-900);
+        align-self: end;
+
     }
 
 
@@ -1127,10 +1146,21 @@ body {
     }
 
 
+    .text-area-section .count-options-div div {
+        align-self: start;
+    }
+
+
+    .light-theme .text-area-section .count-options-div div {
+        align-self: start;
+    }
+
+
     .text-area-section .count-options-div article {
         display: flex;
         flex-direction: column;
         justify-content: space-between;
+        gap: 0.5rem;
     }
 
 
@@ -1162,6 +1192,7 @@ body {
         font-size: 1rem;
         font-weight: normal;
         color: var(--white-col-200);
+        align-self: start;
     }
 
 
@@ -1170,7 +1201,11 @@ body {
         font-size: 1rem;
         font-weight: normal;
         color: var(--cols-neutral-600);
+        align-self: start;
     }
+
+
+    
 
 
 

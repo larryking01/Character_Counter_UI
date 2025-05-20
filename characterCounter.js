@@ -135,10 +135,9 @@ function toggleCharacterLimitInputVisible() {
 
 
 function checkCharacterLimit() {
-    let characterLimit = parseInt(characterLimitInput.value);
+    let characterLimit = Math.round(characterLimitInput.value);
     let enteredText = textArea.value;
-    let enteredTextNoSpaces = textArea.value.trim()
-                              .replace(/\s/g, '');
+    let enteredTextNoSpaces = textArea.value.trim().replace(/\s/g, '');
     let totalCharacters;
     let eightyPercent;
 
@@ -174,6 +173,7 @@ function checkCharacterLimit() {
                                     <span class="specific-error-text">You have hit the maximum limit of ${ characterLimit } characters</span>
                                 </span>
                               `;    
+
     }
     else {
         if(!isNaN( characterLimit )) {
@@ -186,7 +186,8 @@ function checkCharacterLimit() {
                                         <span class="specific-error-text">Limit reached! Your text exceeds ${ characterLimit } characters.</span>
                                     </span>
                                 `;    
-}
+            textArea.value = textArea.value.slice(0, characterLimit ) // trim to max
+        }
         else {
             // do nothing
         }
